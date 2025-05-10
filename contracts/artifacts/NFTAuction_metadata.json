@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.29+commit.ab55807c"
+		"version": "0.8.25+commit.b61c2a91"
 	},
 	"language": "Solidity",
 	"output": {
@@ -418,6 +418,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "ADMIN_ADDRESS",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "STATUS_DONE",
 				"outputs": [
 					{
@@ -699,34 +712,12 @@
 						"type": "uint256"
 					}
 				],
-				"name": "getBidData",
+				"name": "getHighestBidderAmount",
 				"outputs": [
 					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "serialNumber",
-								"type": "uint256"
-							},
-							{
-								"internalType": "address",
-								"name": "bidder",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "amount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "timestamp",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct NFTAuction.BidData[]",
+						"internalType": "uint256",
 						"name": "",
-						"type": "tuple[]"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -736,16 +727,21 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "listingId",
-						"type": "uint256"
-					}
-				],
-				"name": "getHighestBidderAmount",
-				"outputs": [
-					{
-						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "hasPlacedBid",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -1371,7 +1367,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/mint.sol": "NFTAuction"
+			"contracts/mint1.sol": "NFTAuction"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -1379,7 +1375,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -1553,12 +1549,12 @@
 				"dweb:/ipfs/QmVUSvooZKEdEdap619tcJjTLcAuH6QBdZqAzWwnAXZAWJ"
 			]
 		},
-		"contracts/mint.sol": {
-			"keccak256": "0x7b548e55c6693c9227804f51a2cfab0fe37d07e00003819df42d998cb375909a",
+		"contracts/mint1.sol": {
+			"keccak256": "0x65944a425883e3ffbfb7e33e80346dacfbbfa1d56c30bcae58f797cab0e8caaa",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://909f3e5eaedff4668682cc2e1b95a6dac4920f1ebad04eea91fb939290999807",
-				"dweb:/ipfs/QmX6iWsDQErrw6yKtKE6dMP7Wuenppkut25QQA3TMYKh9o"
+				"bzz-raw://5cc90a5fd8f9147b7ecdb58dfd636a729f71b03833b84c0eeccaaa5e27ee3c92",
+				"dweb:/ipfs/QmXPch3zw9rxRiyN44pHieCuvP2wquXMziAs2nWjRNGmKX"
 			]
 		}
 	},

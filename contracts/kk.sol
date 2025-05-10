@@ -2,8 +2,12 @@
 pragma solidity ^0.8.0;
 
 interface IERC20 {
+    
+     function balanceOf(address account) external view returns (uint256);
+    
     function transfer(address recipient, uint256 amount) external returns (bool);
     function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+    
 }
 
 contract MLMStakingUSDT {
@@ -68,6 +72,7 @@ contract MLMStakingUSDT {
         }));
     }
 
+
     function stake(uint256 amount) external {
         require(amount > 0, "Stake must be greater than 0");
         require(users[msg.sender].referrer != address(0), "User must be registered");
@@ -84,6 +89,7 @@ contract MLMStakingUSDT {
         }));
 
         positionIdToUser[positionId] = msg.sender;
+
 
         // Distribute level income
         address upline = users[msg.sender].referrer;
@@ -137,6 +143,8 @@ contract MLMStakingUSDT {
         return ids;
     }
 
+     
+
     function getDirectReferralCount(address user) external view returns (uint256) {
         return directReferrals[user].length;
     }
@@ -173,6 +181,7 @@ contract MLMStakingUSDT {
     function getUserLevel(address user) external view returns (uint8) {
         uint256 count = directReferrals[user].length;
         if (count >= 10) return 3;
+        
         if (count >= 5) return 2;
         if (count >= 1) return 1;
         return 0;

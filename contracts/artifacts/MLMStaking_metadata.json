@@ -1,12 +1,18 @@
 {
 	"compiler": {
-		"version": "0.8.20+commit.a1b79de6"
+		"version": "0.8.25+commit.b61c2a91"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -14,13 +20,13 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
+						"indexed": true,
 						"internalType": "address",
 						"name": "user",
 						"type": "address"
 					},
 					{
-						"indexed": false,
+						"indexed": true,
 						"internalType": "address",
 						"name": "referrer",
 						"type": "address"
@@ -33,15 +39,33 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
+						"indexed": true,
 						"internalType": "address",
 						"name": "user",
 						"type": "address"
 					},
 					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "stakeId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "positionId",
+						"type": "uint256"
+					},
+					{
 						"indexed": false,
 						"internalType": "uint256",
 						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
 						"type": "uint256"
 					}
 				],
@@ -52,25 +76,163 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "directReferralCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "directReferralIncome",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getDirectReferralCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getDirectReferralIncome",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "_user",
 						"type": "address"
 					}
 				],
-				"name": "getUserInfo",
+				"name": "getPositionIds",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_positionId",
+						"type": "uint256"
+					}
+				],
+				"name": "getStakeByPositionId",
 				"outputs": [
 					{
 						"internalType": "address",
-						"name": "referrer",
+						"name": "user",
 						"type": "address"
 					},
 					{
-						"internalType": "bool",
-						"name": "registered",
-						"type": "bool"
+						"internalType": "uint256",
+						"name": "stakeId",
+						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "stakedAmount",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getTotalIncome",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getUserLevel",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -98,7 +260,52 @@
 			},
 			{
 				"inputs": [],
+				"name": "nextPositionId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "nextStakeId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "positionIdToUser",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -137,6 +344,25 @@
 						"type": "address"
 					}
 				],
+				"name": "totalIncome",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
 				"name": "users",
 				"outputs": [
 					{
@@ -148,11 +374,6 @@
 						"internalType": "bool",
 						"name": "registered",
 						"type": "bool"
-					},
-					{
-						"internalType": "uint256",
-						"name": "stakedAmount",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -189,9 +410,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/mlmdapps.sol": "MLMStaking"
+			"contracts/mlm.sol": "MLMStaking"
 		},
-		"evmVersion": "shanghai",
+		"evmVersion": "cancun",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -203,12 +424,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/mlmdapps.sol": {
-			"keccak256": "0x0e3a3387a0ad0d5353cbeb38647261d8b879bccc5dfa3f1fddb1a6be494d9baf",
+		"contracts/mlm.sol": {
+			"keccak256": "0xd2ad60a8650174586bb5b2b7c0898dc393c8710894635f3d208ecc975f0b4ea7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a7f2815259ed9dfcaedba43baa296446a1d99da9b2ea526bc6cc4c50a67eb522",
-				"dweb:/ipfs/Qmb1sTmGxwFyTouiFx8ET8j6pmmYGixoNq4735aS1MAueh"
+				"bzz-raw://5b2f2d9a3cf014c485c9f07aa761b517d46d0f55140a4f57a23305119e237b98",
+				"dweb:/ipfs/Qmf8ckDfchNzkfedunUiTD2r6jcxeaYjacAqWYRZMG8eJp"
 			]
 		}
 	},

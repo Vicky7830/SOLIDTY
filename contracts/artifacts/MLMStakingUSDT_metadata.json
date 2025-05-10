@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.20+commit.a1b79de6"
+		"version": "0.8.25+commit.b61c2a91"
 	},
 	"language": "Solidity",
 	"output": {
@@ -17,6 +17,37 @@
 				"type": "constructor"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "stakeId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "reward",
+						"type": "uint256"
+					}
+				],
+				"name": "Claimed",
+				"type": "event"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -30,6 +61,38 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_positionId",
+						"type": "uint256"
+					}
+				],
+				"name": "claim",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "directReferralIncome",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -78,6 +141,73 @@
 					}
 				],
 				"name": "getDirectReferralCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getDirectReferralIncome",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "numDays",
+						"type": "uint256"
+					}
+				],
+				"name": "getEstimatedReturn",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "interest",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalReturn",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getLevelIncome",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -219,8 +349,28 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "timestamp",
+						"name": "startDate",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "apy",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "perDayInterest",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "status",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -299,6 +449,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "isRegistered",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
@@ -364,6 +533,11 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "numDays",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
 					}
@@ -376,6 +550,25 @@
 			{
 				"inputs": [],
 				"name": "stakeCounter",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "stakingAPY",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -423,6 +616,11 @@
 						"internalType": "uint256",
 						"name": "levelIncome",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "registered",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -455,9 +653,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/kk.sol": "MLMStakingUSDT"
+			"contracts/roy.sol": "MLMStakingUSDT"
 		},
-		"evmVersion": "shanghai",
+		"evmVersion": "cancun",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -469,12 +667,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/kk.sol": {
-			"keccak256": "0x16822328ab0c9e97a271cf7673c564ebc9387361a7118ccb8754bc83fba3d811",
+		"contracts/roy.sol": {
+			"keccak256": "0x7f23e54fb44ab5780a2eb93fc898eaa27e0cc1561c716a5dc7086dd4dcfc0ca3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://996d9318b12fb3cd534eefdbe10ac62c646529488c6e943d3a81ecbde3c13656",
-				"dweb:/ipfs/QmNdVnhpnReosBkaGQomMSj8KwEJFuE2r6XjJtKJ9TuGDt"
+				"bzz-raw://a859f2ba2a7e17d61e64e21abdd1577963c8e5166f681b18cc5b744c94220334",
+				"dweb:/ipfs/QmSPH1vGxhDZz5DVuXPzBAth15aK5VtZU9Gx6eAfKCMepG"
 			]
 		}
 	},

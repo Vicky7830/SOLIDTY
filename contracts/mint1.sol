@@ -15,6 +15,7 @@ contract NFTAuction is ERC721URIStorage, ReentrancyGuard, Ownable {
     uint8 public constant STATUS_OPEN = 1;
     uint8 public constant STATUS_DONE = 2;
     uint256 public minAuctionIncrement = 10; // 10 percent
+   
 
     struct Listing {
         address seller;
@@ -40,6 +41,7 @@ contract NFTAuction is ERC721URIStorage, ReentrancyGuard, Ownable {
     mapping(uint256 => mapping(address => uint256)) public bids;
     mapping(uint256 => address) public highestBidder;
     mapping(uint256 => mapping(address => bool)) public hasPlacedBid;
+  
 
     event Minted(address indexed minter, uint256 nftID, string uri);
     event AuctionCreated(uint256 listingId, address indexed seller, uint256 price, uint256 tokenId, uint256 startAt, uint256 endAt);
@@ -52,7 +54,7 @@ contract NFTAuction is ERC721URIStorage, ReentrancyGuard, Ownable {
         tokenCounter = 0;
         listingCounter = 0;
     }
-
+ 
     function mint(string memory tokenURI, address minterAddress) public onlyOwner returns (uint256) {
         tokenCounter++;
         uint256 tokenId = tokenCounter;
@@ -71,6 +73,7 @@ contract NFTAuction is ERC721URIStorage, ReentrancyGuard, Ownable {
         uint256 listingId = listingCounter;
 
         uint256 startAt = block.timestamp;
+
         uint256 endAt = startAt + durationInSeconds;
 
         string memory tokenUri = tokenURI(tokenId);
