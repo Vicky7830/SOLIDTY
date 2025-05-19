@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.25+commit.b61c2a91"
+		"version": "0.8.30+commit.73712a01"
 	},
 	"language": "Solidity",
 	"output": {
@@ -8,140 +8,50 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "allUsers",
+				"outputs": [
+					{
 						"internalType": "address",
-						"name": "_owner",
+						"name": "",
 						"type": "address"
 					}
 				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": true,
 						"internalType": "address",
-						"name": "user",
+						"name": "",
 						"type": "address"
 					},
 					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "referrer",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
-				"name": "Registered",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
+				"name": "directReferrals",
+				"outputs": [
 					{
-						"indexed": true,
 						"internalType": "address",
-						"name": "user",
+						"name": "referralAddress",
 						"type": "address"
 					},
 					{
-						"indexed": true,
 						"internalType": "uint256",
-						"name": "stakeId",
+						"name": "incomeEarned",
 						"type": "uint256"
 					},
 					{
-						"indexed": true,
-						"internalType": "uint256",
-						"name": "positionId",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
 						"internalType": "uint256",
 						"name": "timestamp",
-						"type": "uint256"
-					}
-				],
-				"name": "Staked",
-				"type": "event"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "directReferralCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "directReferralIncome",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					}
-				],
-				"name": "getDirectReferralCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					}
-				],
-				"name": "getDirectReferralIncome",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -156,60 +66,57 @@
 						"type": "address"
 					}
 				],
-				"name": "getPositionIds",
+				"name": "getLevelIncomeDistribution",
 				"outputs": [
 					{
-						"internalType": "uint256[]",
+						"components": [
+							{
+								"internalType": "address",
+								"name": "receiverAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "stakeId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "stakeAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "incomeReceived",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "uplineAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint8",
+								"name": "level",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct MLMStaking.LevelIncomeData[]",
 						"name": "",
-						"type": "uint256[]"
+						"type": "tuple[]"
 					}
 				],
 				"stateMutability": "view",
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_positionId",
-						"type": "uint256"
-					}
-				],
-				"name": "getStakeByPositionId",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "stakeId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					}
-				],
-				"name": "getTotalIncome",
+				"inputs": [],
+				"name": "getTotalUsers",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -228,12 +135,29 @@
 						"type": "address"
 					}
 				],
-				"name": "getUserLevel",
+				"name": "getUserStakes",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "stakeId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct MLMStaking.Stake[]",
 						"name": "",
-						"type": "uint256"
+						"type": "tuple[]"
 					}
 				],
 				"stateMutability": "view",
@@ -285,19 +209,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "owner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -320,7 +231,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_referrer",
+						"name": "referrer",
 						"type": "address"
 					}
 				],
@@ -337,14 +248,8 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "totalIncome",
+				"inputs": [],
+				"name": "stakeCounter",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -374,27 +279,25 @@
 						"internalType": "bool",
 						"name": "registered",
 						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalIncome",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "directReferralIncome",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "levelIncome",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
 				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "withdraw",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"stateMutability": "payable",
-				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -410,9 +313,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/mlm.sol": "MLMStaking"
+			"contracts/3_Ballot.sol": "MLMStaking"
 		},
-		"evmVersion": "cancun",
+		"evmVersion": "prague",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -424,12 +327,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/mlm.sol": {
-			"keccak256": "0xd2ad60a8650174586bb5b2b7c0898dc393c8710894635f3d208ecc975f0b4ea7",
+		"contracts/3_Ballot.sol": {
+			"keccak256": "0x039bce5079fe33cfb6dd22f5bf2e11c76a758f1caa8a7ef5a48b32220791d5d4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5b2f2d9a3cf014c485c9f07aa761b517d46d0f55140a4f57a23305119e237b98",
-				"dweb:/ipfs/Qmf8ckDfchNzkfedunUiTD2r6jcxeaYjacAqWYRZMG8eJp"
+				"bzz-raw://3931a151513cbc7e10217a8d3e5d8c9e12d026f1adcbec2044bd898cf06f4b29",
+				"dweb:/ipfs/QmP139gYjjGZdBcnGAso2ByMJ27Dy39qsNXMfv7csJeT9W"
 			]
 		}
 	},

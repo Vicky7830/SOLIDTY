@@ -292,7 +292,7 @@
 								"type": "uint8"
 							}
 						],
-						"internalType": "struct MLMStakingUSDT.LevelIncomeData[]",
+						"internalType": "struct SikT.LevelIncomeData[]",
 						"name": "",
 						"type": "tuple[]"
 					}
@@ -728,7 +728,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/roy.sol": "MLMStakingUSDT"
+			"contracts/roy.sol": "SikT"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -743,11 +743,11 @@
 	},
 	"sources": {
 		"contracts/roy.sol": {
-			"keccak256": "0x5b1fe4a45b3ade3386c7335863711c562212d2255b21a46b6b50fd75f82e0fac",
+			"keccak256": "0xbcd7c89a4f0f26b3c72e0fc5ce352e49beb0191a7b723435acf9beeb56e875a1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0c9ce54ded8e93ca8a8e9337bea2140f5d8b5ef93ee850977708a9e60d891d08",
-				"dweb:/ipfs/QmVRMQnsRsMeFjSip2geysCBFL46JJ9KseZByubpmdeB2Q"
+				"bzz-raw://14a64cf9de278de465352a5d7698d83eeae492f51e91a2a68eff4feec5cfa49e",
+				"dweb:/ipfs/QmR7LRb2eBvmM3JrGJCYix8tiCFSLRntwBMQ1RSA5peH7R"
 			]
 		}
 	},

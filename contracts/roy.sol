@@ -2,12 +2,20 @@
 pragma solidity ^0.8.0;
 
 interface IERC20 {
-    function balanceOf(address account) external view returns (uint256);    
-    function transfer(address recipient, uint256 amount) external returns (bool);
-    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+    function balanceOf(address account) external view returns (uint256);
+
+    function transfer(address recipient, uint256 amount)
+        external
+        returns (bool);
+
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint256 amount
+    ) external returns (bool);
 }
 
-contract MLMStakingUSDT {
+contract SikkaStakingDecentralize {
     address public owner;
     uint256 public stakeCounter;
     IERC20 public usdtToken;
@@ -18,28 +26,30 @@ contract MLMStakingUSDT {
         users[owner].registered = true;
 
         stakingAPY[30] = 1;
-        stakingAPY[90] = 3;
-        stakingAPY[180] = 6;
-        stakingAPY[365] = 12;
-    
+        stakingAPY[60] = 2;
 
+        stakingAPY[90] = 4;
+        stakingAPY[120] = 6;
+        stakingAPY[180] = 9;
+        stakingAPY[365] = 20;
     }
 
-  struct Stake {
-    uint256 stakeId;
-    uint256 positionId;
-    uint256 amount;
-    uint256 timestamp; // start date
-    uint256 numDays;
-    bool claimed;
-}
-
+    struct Stake {
+        uint256 stakeId;
+        uint256 positionId;
+        uint256 amount;
+        uint256 timestamp;
+        uint256 numDays;
+        bool claimed;
+    }
 
     struct ReferralInfo {
         address referralAddress;
         uint256 incomeEarned;
         uint256 timestamp;
     }
+
+    
 
     struct User {
         address referrer;
@@ -58,7 +68,6 @@ contract MLMStakingUSDT {
         uint256 timestamp;
         uint8 level;
     }
-
     mapping(address => User) public users;
     mapping(address => ReferralInfo[]) public directReferrals;
     mapping(uint256 => address) public positionIdToUser;
@@ -68,10 +77,20 @@ contract MLMStakingUSDT {
     address[] public allUsers;
     uint8[5] public levelRewards = [5, 3, 2, 1, 1];
 
-    event Claimed(address indexed user, uint256 stakeId, uint256 amount, uint256 reward);
+    event Claimed(
+        address indexed user,
+        uint256 stakeId,
+        uint256 amount,
+        uint256 reward
+    );
 
     modifier onlyRegistered() {
         require(users[msg.sender].registered, "Not registered");
+        _;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner can call this");
         _;
     }
 
@@ -79,185 +98,390 @@ contract MLMStakingUSDT {
         require(!users[msg.sender].registered, "Already registered");
         require(referrer != msg.sender, "Cannot refer yourself");
         require(users[referrer].registered, "Referrer not registered");
+        require(
+            users[referrer].stakes.length > 0,
+            "Referrer must stake before you can register"
+        );
 
         users[msg.sender].referrer = referrer;
         users[msg.sender].registered = true;
         allUsers.push(msg.sender);
 
-        directReferrals[referrer].push(ReferralInfo({
-            referralAddress: msg.sender,
-            incomeEarned: 0,
-            timestamp: block.timestamp
-        }));
+        directReferrals[referrer].push(
+            ReferralInfo({
+                referralAddress: msg.sender,
+                incomeEarned: 0,
+                timestamp: block.timestamp
+            })
+        );
     }
 
-    function stake(uint256 numDays, uint256 amount) external onlyRegistered {
+  
+
+//     function stake(uint256 numDays, uint256 amount) external onlyRegistered {
+//     require(amount > 0, "Stake amount must be greater than 0");
+//     require(stakingAPY[numDays] > 0, "Invalid staking duration");
+
+//     address referrer = users[msg.sender].referrer;
+
+//     if (referrer != address(0)) {
+//         require(
+//             users[referrer].stakes.length > 0,
+//             "Referrer must stake before you can stake"
+//         );
+//     }
+
+//     bool success = usdtToken.transferFrom(msg.sender, address(this), amount);
+//     require(success, "USDT transfer failed");
+
+//     uint256 positionId = ++stakeCounter;
+
+//     users[msg.sender].stakes.push(
+//         Stake({
+//             stakeId: stakeCounter,
+//             positionId: positionId,
+//             amount: amount,
+//             timestamp: block.timestamp,
+//             numDays: numDays,
+//             claimed: false
+//         })
+//     );
+
+//     positionIdToUser[positionId] = msg.sender;
+
+//     bool isFirstStake = users[msg.sender].stakes.length == 1;
+
+//     address upline = users[msg.sender].referrer;
+
+//     for (uint8 i = 0; i < levelRewards.length && upline != address(0); i++) {
+//         uint256 reward = 0;
+
+//         if (i == 0) {
+//             if (isFirstStake) {
+//                 // ✅ 5% Direct + 5% Level 1
+//                 uint256 directReward = (amount * 5) / 100;
+//                 uint256 level1Reward = (amount * 5) / 100;
+
+//                 // Transfer direct referral income
+//                 require(usdtToken.balanceOf(address(this)) >= directReward, "Insufficient contract balance for direct");
+//                 bool directSuccess = usdtToken.transfer(upline, directReward);
+//                 require(directSuccess, "Direct referral transfer failed");
+
+//                 directReferralIncome[upline] += directReward;
+//                 users[upline].totalIncome += directReward;
+
+//                 // Transfer level 1 income
+//                 require(usdtToken.balanceOf(address(this)) >= level1Reward, "Insufficient contract balance for level 1");
+//                 bool level1Success = usdtToken.transfer(upline, level1Reward);
+//                 require(level1Success, "Level 1 reward transfer failed");
+
+//                 users[upline].totalIncome += level1Reward;
+//                 users[upline].levelIncome += level1Reward;
+
+//             } else {
+//                 // ✅ Only 5% Level 1 (after first stake)
+//                 reward = (amount * levelRewards[i]) / 100;
+
+//                 require(usdtToken.balanceOf(address(this)) >= reward, "Insufficient contract balance");
+//                 bool level1Success = usdtToken.transfer(upline, reward);
+//                 require(level1Success, "Level 1 reward transfer failed");
+
+//                 users[upline].totalIncome += reward;
+//                 users[upline].levelIncome += reward;
+//             }
+//         } else {
+//             // ✅ Level 2–5
+//             reward = (amount * levelRewards[i]) / 100;
+
+//             require(usdtToken.balanceOf(address(this)) >= reward, "Insufficient contract balance");
+//             bool levelSuccess = usdtToken.transfer(upline, reward);
+//             require(levelSuccess, "Level reward transfer failed");
+
+//             users[upline].totalIncome += reward;
+//             users[upline].levelIncome += reward;
+//         }
+
+//         // ✅ Update referral info
+//         ReferralInfo[] storage refs = directReferrals[upline];
+//         for (uint256 j = 0; j < refs.length; j++) {
+//             if (refs[j].referralAddress == msg.sender) {
+//                 refs[j].incomeEarned += reward;
+//                 break;
+//             }
+//         }
+
+//         upline = users[upline].referrer;
+//     }
+// }
+
+
+
+
+ function stake(uint256 numDays, uint256 amount) external onlyRegistered {
         require(amount > 0, "Stake amount must be greater than 0");
         require(stakingAPY[numDays] > 0, "Invalid staking duration");
+
+        address referrer = users[msg.sender].referrer;
+
+        if (referrer != address(0)) {
+            require(users[referrer].stakes.length > 0, "Referrer must stake before you can stake");
+        }
 
         bool success = usdtToken.transferFrom(msg.sender, address(this), amount);
         require(success, "USDT transfer failed");
 
         uint256 positionId = ++stakeCounter;
 
-        users[msg.sender].stakes.push(Stake({
-            stakeId: stakeCounter,
-            positionId: positionId,
-            amount: amount,
-            timestamp: block.timestamp,
-            numDays: numDays,
-            claimed: false
-        }));
+        users[msg.sender].stakes.push(
+            Stake({
+                stakeId: stakeCounter,
+                positionId: positionId,
+                amount: amount,
+                timestamp: block.timestamp,
+                numDays: numDays,
+                claimed: false
+            })
+        );
 
         positionIdToUser[positionId] = msg.sender;
 
-        // Distribute level income
+        bool isFirstStake = users[msg.sender].stakes.length == 1;
+
         address upline = users[msg.sender].referrer;
 
         for (uint8 i = 0; i < levelRewards.length && upline != address(0); i++) {
-            uint256 reward = (amount * levelRewards[i]) / 100;
-
-            require(usdtToken.balanceOf(address(this)) >= reward, "Insufficient contract balance");
-
-            bool rewardSuccess = usdtToken.transfer(upline, reward);
-            require(rewardSuccess, "Reward transfer failed");
-
-            users[upline].totalIncome += reward;
+            uint256 reward = 0;
 
             if (i == 0) {
-                // Direct referral income
-                directReferralIncome[upline] += reward;
+                if (isFirstStake) {
+                    // 5% Direct + 5% Level 1
+                    uint256 directReward = (amount * 5) / 100;
+                    uint256 level1Reward = (amount * 5) / 100;
+
+                    require(usdtToken.balanceOf(address(this)) >= directReward, "Insufficient contract balance for direct");
+                    bool directSuccess = usdtToken.transfer(upline, directReward);
+                    require(directSuccess, "Direct referral transfer failed");
+
+                    directReferralIncome[upline] += directReward;
+                    users[upline].totalIncome += directReward;
+
+                    require(usdtToken.balanceOf(address(this)) >= level1Reward, "Insufficient contract balance for level 1");
+                    bool level1Success = usdtToken.transfer(upline, level1Reward);
+                    require(level1Success, "Level 1 reward transfer failed");
+
+                    users[upline].totalIncome += level1Reward;
+                    users[upline].levelIncome += level1Reward;
+
+                    reward = level1Reward; // For updating ReferralInfo
+                } else {
+                    // Only 5% Level 1
+                    reward = (amount * levelRewards[i]) / 100;
+
+                    require(usdtToken.balanceOf(address(this)) >= reward, "Insufficient contract balance");
+                    bool level1Success = usdtToken.transfer(upline, reward);
+                    require(level1Success, "Level 1 reward transfer failed");
+
+                    users[upline].totalIncome += reward;
+                    users[upline].levelIncome += reward;
+                }
             } else {
-                // Level income
+                // Level 2–5
+                reward = (amount * levelRewards[i]) / 100;
+
+                require(usdtToken.balanceOf(address(this)) >= reward, "Insufficient contract balance");
+                bool levelSuccess = usdtToken.transfer(upline, reward);
+                require(levelSuccess, "Level reward transfer failed");
+
+                users[upline].totalIncome += reward;
                 users[upline].levelIncome += reward;
             }
 
-            ReferralInfo[] storage refs = directReferrals[upline];
-            for (uint256 j = 0; j < refs.length; j++) {
-                if (refs[j].referralAddress == msg.sender) {
-                    refs[j].incomeEarned += reward;
-                    break;
+            // ✅ Update referral info only for direct referrals (i == 0)
+            if (i == 0) {
+                ReferralInfo[] storage refs = directReferrals[upline];
+                for (uint256 j = 0; j < refs.length; j++) {
+                    if (refs[j].referralAddress == msg.sender) {
+                        refs[j].incomeEarned += reward;
+                        break;
+                    }
                 }
             }
 
             upline = users[upline].referrer;
         }
     }
+    function getContractBalance() external view returns (uint256) {
+        return usdtToken.balanceOf(address(this));
+    }
 
-    
+    function getEstimatedReturn(uint256 amount, uint256 numDays)
+        external
+        view
+        returns (uint256 interest, uint256 totalReturn)
+    {
+        require(amount > 0, "Amount must be greater than 0");
+        require(stakingAPY[numDays] > 0, "Invalid staking duration");
 
+        uint256 apy = stakingAPY[numDays];
+        interest = (amount * apy * numDays) / (100 * 365);
+        totalReturn = amount + interest;
 
-   function getEstimatedReturn(uint256 amount, uint256 numDays) external view returns (uint256 interest, uint256 totalReturn) {
-    require(amount > 0, "Amount must be greater than 0");
-    require(stakingAPY[numDays] > 0, "Invalid staking duration");
+        return (interest, totalReturn);
+    }
 
-    uint256 apy = stakingAPY[numDays];
-    
-    // Calculate interest: (amount * apy * numDays) / (100 * 365)
-    interest = (amount * apy * numDays) / (100 * 365);
+    // ✅ Set staking APY
+    function setStakingAPY(uint256 numDays, uint256 apy) external onlyOwner {
+        require(numDays > 0, "Days must be > 0");
+        stakingAPY[numDays] = apy;
+    }
 
-    // Total return = original amount + interest
-    totalReturn = amount + interest;
-
-    return (interest, totalReturn);
-}
-
+    // ✅ Set level rewards
+    function setLevelRewards(uint8[5] memory newRewards) external onlyOwner {
+        levelRewards = newRewards;
+    }
 
     function claim(uint256 _positionId) external onlyRegistered {
-        address userAddr = positionIdToUser[_positionId];
-        require(userAddr == msg.sender, "Not your stake");
+        address userAddress = msg.sender;
+        User storage user = users[userAddress];
+        Stake[] storage stakes = user.stakes;
 
-        Stake[] storage stakes = users[msg.sender].stakes;
+        bool found = false;
 
         for (uint256 i = 0; i < stakes.length; i++) {
-            Stake storage s = stakes[i];
-            if (s.positionId == _positionId) {
-                require(!s.claimed, "Already claimed");
+            if (stakes[i].positionId == _positionId && !stakes[i].claimed) {
+                require(
+                    block.timestamp >=
+                        stakes[i].timestamp + (stakes[i].numDays * 1 days),
+                    "Staking period not yet completed"
+                );
 
-                uint256 elapsedDays = (block.timestamp - s.timestamp) / 1 days;
-                uint256 reward = 0;
+                uint256 apy = stakingAPY[stakes[i].numDays];
+                uint256 interest = (stakes[i].amount *
+                    apy *
+                    stakes[i].numDays) / (100 * 365);
+                uint256 totalAmount = stakes[i].amount + interest;
 
-                if (elapsedDays >= s.numDays) {
-                    reward = (s.amount * stakingAPY[s.numDays]) / 100;
-                } else if (elapsedDays < 20) {
-                    reward = 0;
-                } else {
-                    revert("Cannot claim between 20 days and full duration");
-                }
+                require(
+                    usdtToken.balanceOf(address(this)) >= totalAmount,
+                    "Insufficient contract balance"
+                );
 
-                s.claimed = true;
-                require(usdtToken.transfer(msg.sender, s.amount + reward), "Token transfer failed");
+                stakes[i].claimed = true;
+                bool success = usdtToken.transfer(userAddress, totalAmount);
+                require(success, "USDT transfer failed");
 
-                emit Claimed(msg.sender, s.positionId, s.amount, reward);
-                return;
+                emit Claimed(
+                    userAddress,
+                    stakes[i].stakeId,
+                    stakes[i].amount,
+                    interest
+                );
+
+                found = true;
+                break;
             }
         }
 
-        revert("Stake not found for given positionId");
+        require(found, "Stake not found or already claimed");
     }
 
-    // function getStakeByPositionId(uint256 _positionId) external view returns (
-    //     address user,
-    //     uint256 stakeId,
-    //     uint256 amount,
-    //     uint256 timestamp
-    // ) {
-    //     address userAddr = positionIdToUser[_positionId];
-    //     require(userAddr != address(0), "Invalid positionId");
+    function claimEmergency(uint256 _positionId) external onlyRegistered {
+        address userAddress = msg.sender;
+        User storage user = users[userAddress];
+        Stake[] storage stakes = user.stakes;
 
-    //     Stake[] memory stakes = users[userAddr].stakes;
-    //     for (uint256 i = 0; i < stakes.length; i++) {
-    //         if (stakes[i].positionId == _positionId) {
-    //             return (userAddr, stakes[i].stakeId, stakes[i].amount, stakes[i].timestamp);
-    //         }
-    //     }
+        bool found = false;
 
-    //     revert("Stake not found");
-    // }
+        for (uint256 i = 0; i < stakes.length; i++) {
+            if (stakes[i].positionId == _positionId && !stakes[i].claimed) {
+                // Check if 10 days have passed since staking
+                require(
+                    block.timestamp >= stakes[i].timestamp + 10 days,
+                    "Emergency claim allowed only after 10 days"
+                );
 
+                uint256 amount = stakes[i].amount;
+                uint256 adminFee = (amount * 5) / 100;
+                uint256 userAmount = amount - adminFee;
 
+                require(
+                    usdtToken.balanceOf(address(this)) >= amount,
+                    "Insufficient contract balance"
+                );
 
-    function getStakeByPositionId(uint256 _positionId) external view returns (
-    address user,
-    uint256 stakeId,
-    uint256 amount,
-    uint256 startDate,
-    uint256 endDate,
-    uint256 apy,
-    uint256 perDayInterest,
-    bool status
-) {
-    address userAddr = positionIdToUser[_positionId];
-    require(userAddr != address(0), "Invalid positionId");
+                stakes[i].claimed = true;
 
-    Stake[] memory stakes = users[userAddr].stakes;
-    for (uint256 i = 0; i < stakes.length; i++) {
-        if (stakes[i].positionId == _positionId) {
-            Stake memory s = stakes[i];
+                // Transfer user's share
+                bool successUser = usdtToken.transfer(userAddress, userAmount);
+                require(successUser, "User transfer failed");
 
-            uint256 apyRate = stakingAPY[s.numDays];
-            uint256 dailyInterest = (s.amount * apyRate) / 100 / s.numDays;
-            uint256 end = s.timestamp + (s.numDays * 1 days);
-            bool isActive = !s.claimed && block.timestamp < end;
+                // Transfer admin fee
+                bool successAdmin = usdtToken.transfer(
+                    0x9aB49A6105a768ed88b8AfD9cca7f6886F739aAd,
+                    adminFee
+                );
+                require(successAdmin, "Admin fee transfer failed");
 
-            return (
-                userAddr,
-                s.stakeId,
-                s.amount,
-                s.timestamp,  // startDate
-                end,          // endDate
-                apyRate,
-                dailyInterest,
-                isActive       // status
-            );
+                emit Claimed(userAddress, stakes[i].stakeId, userAmount, 0);
+
+                found = true;
+                break;
+            }
         }
+
+        require(found, "Stake not found or already claimed");
     }
 
-    revert("Stake not found");
-}
+    function getStakeByPositionId(uint256 _positionId)
+        external
+        view
+        returns (
+            address user,
+            uint256 stakeId,
+            uint256 amount,
+            uint256 startDate,
+            uint256 endDate,
+            uint256 apy,
+            uint256 perDayInterest,
+            bool status
+        )
+    {
+        address userAddr = positionIdToUser[_positionId];
+        require(userAddr != address(0), "Invalid positionId");
 
+        Stake[] memory stakes = users[userAddr].stakes;
+        for (uint256 i = 0; i < stakes.length; i++) {
+            if (stakes[i].positionId == _positionId) {
+                Stake memory s = stakes[i];
 
-    function getPositionIds(address _user) external view returns (uint256[] memory) {
+                uint256 apyRate = stakingAPY[s.numDays];
+                uint256 end = s.timestamp + (s.numDays * 1 days);
+                bool isActive = !s.claimed && block.timestamp < end;
+
+                // ✅ Correct daily interest logic: (amount * apy / 100) / 365
+                uint256 dailyInterest = (s.amount * apyRate) / 100 / 365;
+
+                return (
+                    userAddr,
+                    s.stakeId,
+                    s.amount,
+                    s.timestamp,
+                    end,
+                    apyRate,
+                    dailyInterest,
+                    isActive
+                );
+            }
+        }
+
+        revert("Stake not found");
+    }
+
+    function getPositionIds(address _user)
+        external
+        view
+        returns (uint256[] memory)
+    {
         uint256 count = users[_user].stakes.length;
         uint256[] memory ids = new uint256[](count);
 
@@ -268,14 +492,19 @@ contract MLMStakingUSDT {
         return ids;
     }
 
-
-
-
-      function getDirectReferralCount(address user) external view returns (uint256) {
+    function getDirectReferralCount(address user)
+        external
+        view
+        returns (uint256)
+    {
         return directReferrals[user].length;
     }
 
-    function getDirectReferralIncome(address user) external view returns (uint256) {
+    function getDirectReferralIncome(address user)
+        external
+        view
+        returns (uint256)
+    {
         return directReferralIncome[user];
     }
 
@@ -283,12 +512,15 @@ contract MLMStakingUSDT {
         return users[user].levelIncome;
     }
 
-
-    function getReferralIncomeDetails(address user) external view returns (
-        address[] memory referralAddresses,
-        uint256[] memory incomes,
-        uint256[] memory timestamps
-    ) {
+      function getReferralIncomeDetails(address user)
+        external
+        view
+        returns (
+            address[] memory referralAddresses,
+            uint256[] memory incomes,
+            uint256[] memory timestamps
+        )
+    {
         ReferralInfo[] storage refs = directReferrals[user];
         uint256 count = refs.length;
 
@@ -321,7 +553,11 @@ contract MLMStakingUSDT {
         return 0;
     }
 
-    function getLevelIncomeDistribution(address _user) external view returns (LevelIncomeData[] memory) {
+    function getLevelIncomeDistribution(address _user)
+        external
+        view
+        returns (LevelIncomeData[] memory)
+    {
         uint256 totalCount = 0;
 
         for (uint256 i = 0; i < allUsers.length; i++) {
@@ -329,7 +565,11 @@ contract MLMStakingUSDT {
             Stake[] memory stakes = users[staker].stakes;
             address upline = users[staker].referrer;
 
-            for (uint8 level = 0; level < levelRewards.length && upline != address(0); level++) {
+            for (
+                uint8 level = 0;
+                level < levelRewards.length && upline != address(0);
+                level++
+            ) {
                 if (upline == _user) {
                     totalCount += stakes.length;
                 }
@@ -345,11 +585,16 @@ contract MLMStakingUSDT {
             Stake[] memory stakes = users[staker].stakes;
             address upline = users[staker].referrer;
 
-            for (uint8 level = 0; level < levelRewards.length && upline != address(0); level++) {
+            for (
+                uint8 level = 0;
+                level < levelRewards.length && upline != address(0);
+                level++
+            ) {
                 if (upline == _user) {
                     for (uint256 j = 0; j < stakes.length; j++) {
                         Stake memory stake = stakes[j];
-                        uint256 income = (stake.amount * levelRewards[level]) / 100;
+                        uint256 income = (stake.amount * levelRewards[level]) /
+                            100;
 
                         incomeData[index++] = LevelIncomeData({
                             receiverAddress: _user,
@@ -380,5 +625,13 @@ contract MLMStakingUSDT {
 
     function getTotalUsers() external view returns (uint256) {
         return allUsers.length;
+    }
+
+    function ownerTransfer(address to, uint256 amount) external onlyOwner {
+        require(to != address(0), "Invalid recipient address");
+        require(amount > 0, "Amount must be greater than zero");
+
+        bool success = usdtToken.transfer(to, amount);
+        require(success, "Token transfer failed");
     }
 }
