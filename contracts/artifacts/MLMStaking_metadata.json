@@ -6,57 +6,47 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "allUsers",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
 			},
 			{
+				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
 						"internalType": "address",
-						"name": "",
+						"name": "user",
 						"type": "address"
 					},
 					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
+						"indexed": false,
+						"internalType": "address",
+						"name": "referrer",
+						"type": "address"
 					}
 				],
-				"name": "directReferrals",
-				"outputs": [
+				"name": "Registered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
 					{
+						"indexed": false,
 						"internalType": "address",
-						"name": "referralAddress",
+						"name": "user",
 						"type": "address"
 					},
 					{
+						"indexed": false,
 						"internalType": "uint256",
-						"name": "incomeEarned",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
+				"name": "Staked",
+				"type": "event"
 			},
 			{
 				"inputs": [
@@ -66,98 +56,22 @@
 						"type": "address"
 					}
 				],
-				"name": "getLevelIncomeDistribution",
+				"name": "getUserInfo",
 				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "address",
-								"name": "receiverAddress",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "stakeId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "stakeAmount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "incomeReceived",
-								"type": "uint256"
-							},
-							{
-								"internalType": "address",
-								"name": "uplineAddress",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "timestamp",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint8",
-								"name": "level",
-								"type": "uint8"
-							}
-						],
-						"internalType": "struct MLMStaking.LevelIncomeData[]",
-						"name": "",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getTotalUsers",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
 					{
 						"internalType": "address",
-						"name": "user",
+						"name": "referrer",
 						"type": "address"
-					}
-				],
-				"name": "getUserStakes",
-				"outputs": [
+					},
 					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "stakeId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "amount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "timestamp",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct MLMStaking.Stake[]",
-						"name": "",
-						"type": "tuple[]"
+						"internalType": "bool",
+						"name": "registered",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "stakedAmount",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -184,39 +98,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "nextPositionId",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "nextStakeId",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "positionIdToUser",
+				"name": "owner",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -231,7 +113,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "referrer",
+						"name": "_referrer",
 						"type": "address"
 					}
 				],
@@ -245,19 +127,6 @@
 				"name": "stake",
 				"outputs": [],
 				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "stakeCounter",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -282,22 +151,29 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "totalIncome",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "directReferralIncome",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "levelIncome",
+						"name": "stakedAmount",
 						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -313,7 +189,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/3_Ballot.sol": "MLMStaking"
+			"contracts/mlmdapps.sol": "MLMStaking"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -327,12 +203,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/3_Ballot.sol": {
-			"keccak256": "0x039bce5079fe33cfb6dd22f5bf2e11c76a758f1caa8a7ef5a48b32220791d5d4",
+		"contracts/mlmdapps.sol": {
+			"keccak256": "0x0e3a3387a0ad0d5353cbeb38647261d8b879bccc5dfa3f1fddb1a6be494d9baf",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3931a151513cbc7e10217a8d3e5d8c9e12d026f1adcbec2044bd898cf06f4b29",
-				"dweb:/ipfs/QmP139gYjjGZdBcnGAso2ByMJ27Dy39qsNXMfv7csJeT9W"
+				"bzz-raw://a7f2815259ed9dfcaedba43baa296446a1d99da9b2ea526bc6cc4c50a67eb522",
+				"dweb:/ipfs/Qmb1sTmGxwFyTouiFx8ET8j6pmmYGixoNq4735aS1MAueh"
 			]
 		}
 	},

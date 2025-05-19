@@ -43,6 +43,18 @@ contract SikkaStakingDecentralize {
         bool claimed;
     }
 
+    // ✅ New Struct for Return
+struct StakeDetails {
+    address user;
+    uint256 stakeId;
+    uint256 amount;
+    uint256 startDate;
+    uint256 endDate;
+    uint256 apy;
+    uint256 perDayInterest;
+    bool status;
+}
+
     struct ReferralInfo {
         address referralAddress;
         uint256 incomeEarned;
@@ -118,101 +130,7 @@ contract SikkaStakingDecentralize {
 
   
 
-//     function stake(uint256 numDays, uint256 amount) external onlyRegistered {
-//     require(amount > 0, "Stake amount must be greater than 0");
-//     require(stakingAPY[numDays] > 0, "Invalid staking duration");
 
-//     address referrer = users[msg.sender].referrer;
-
-//     if (referrer != address(0)) {
-//         require(
-//             users[referrer].stakes.length > 0,
-//             "Referrer must stake before you can stake"
-//         );
-//     }
-
-//     bool success = usdtToken.transferFrom(msg.sender, address(this), amount);
-//     require(success, "USDT transfer failed");
-
-//     uint256 positionId = ++stakeCounter;
-
-//     users[msg.sender].stakes.push(
-//         Stake({
-//             stakeId: stakeCounter,
-//             positionId: positionId,
-//             amount: amount,
-//             timestamp: block.timestamp,
-//             numDays: numDays,
-//             claimed: false
-//         })
-//     );
-
-//     positionIdToUser[positionId] = msg.sender;
-
-//     bool isFirstStake = users[msg.sender].stakes.length == 1;
-
-//     address upline = users[msg.sender].referrer;
-
-//     for (uint8 i = 0; i < levelRewards.length && upline != address(0); i++) {
-//         uint256 reward = 0;
-
-//         if (i == 0) {
-//             if (isFirstStake) {
-//                 // ✅ 5% Direct + 5% Level 1
-//                 uint256 directReward = (amount * 5) / 100;
-//                 uint256 level1Reward = (amount * 5) / 100;
-
-//                 // Transfer direct referral income
-//                 require(usdtToken.balanceOf(address(this)) >= directReward, "Insufficient contract balance for direct");
-//                 bool directSuccess = usdtToken.transfer(upline, directReward);
-//                 require(directSuccess, "Direct referral transfer failed");
-
-//                 directReferralIncome[upline] += directReward;
-//                 users[upline].totalIncome += directReward;
-
-//                 // Transfer level 1 income
-//                 require(usdtToken.balanceOf(address(this)) >= level1Reward, "Insufficient contract balance for level 1");
-//                 bool level1Success = usdtToken.transfer(upline, level1Reward);
-//                 require(level1Success, "Level 1 reward transfer failed");
-
-//                 users[upline].totalIncome += level1Reward;
-//                 users[upline].levelIncome += level1Reward;
-
-//             } else {
-//                 // ✅ Only 5% Level 1 (after first stake)
-//                 reward = (amount * levelRewards[i]) / 100;
-
-//                 require(usdtToken.balanceOf(address(this)) >= reward, "Insufficient contract balance");
-//                 bool level1Success = usdtToken.transfer(upline, reward);
-//                 require(level1Success, "Level 1 reward transfer failed");
-
-//                 users[upline].totalIncome += reward;
-//                 users[upline].levelIncome += reward;
-//             }
-//         } else {
-//             // ✅ Level 2–5
-//             reward = (amount * levelRewards[i]) / 100;
-
-//             require(usdtToken.balanceOf(address(this)) >= reward, "Insufficient contract balance");
-//             bool levelSuccess = usdtToken.transfer(upline, reward);
-//             require(levelSuccess, "Level reward transfer failed");
-
-//             users[upline].totalIncome += reward;
-//             users[upline].levelIncome += reward;
-//         }
-
-//         // ✅ Update referral info
-//         ReferralInfo[] storage refs = directReferrals[upline];
-//         for (uint256 j = 0; j < refs.length; j++) {
-//             if (refs[j].referralAddress == msg.sender) {
-//                 refs[j].incomeEarned += reward;
-//                 break;
-//             }
-//         }
-
-//         upline = users[upline].referrer;
-//     }
-// }
 
 
 
@@ -314,20 +232,53 @@ contract SikkaStakingDecentralize {
         return usdtToken.balanceOf(address(this));
     }
 
-    function getEstimatedReturn(uint256 amount, uint256 numDays)
-        external
-        view
-        returns (uint256 interest, uint256 totalReturn)
-    {
-        require(amount > 0, "Amount must be greater than 0");
-        require(stakingAPY[numDays] > 0, "Invalid staking duration");
+    // function getEstimatedReturn(uint256 amount, uint256 numDays)
+    //     external
+    //     view
+    //     returns (uint256 interest, uint256 totalReturn)
+    // {
+    //     require(amount > 0, "Amount must be greater than 0");
+    //     require(stakingAPY[numDays] > 0, "Invalid staking duration");
 
-        uint256 apy = stakingAPY[numDays];
-        interest = (amount * apy * numDays) / (100 * 365);
-        totalReturn = amount + interest;
+    //     uint256 apy = stakingAPY[numDays];
+    //     interest = (amount * apy * numDays) / (100 * 365);
+    //     totalReturn = amount + interest;
 
-        return (interest, totalReturn);
+    //     return (interest, totalReturn);
+    // }
+
+
+    function getEstimatedReturn(uint256 amount, uint256 numDays) 
+    external
+    view
+    returns (uint256 interest, uint256 totalReturn)
+{
+    require(amount > 0, "Amount must be greater than 0");
+    require(stakingAPY[numDays] > 0, "Invalid staking duration");
+
+    uint256 apy = stakingAPY[numDays];
+    uint256 denominator;
+
+    if (numDays == 30) {
+        denominator = 100 * 30;
+    } else if (numDays == 60) {
+        denominator = 100 * 60;
+    } else if (numDays == 90) {
+        denominator = 100 * 90;
+    } else if (numDays == 120) {
+        denominator = 100 * 120;
+    } else if (numDays == 180) {
+        denominator = 100 * 180;
+    } else if (numDays == 365) {
+        denominator = 100 * 365;
+    } else {
+        revert("Unsupported staking duration");
     }
+
+    interest = (amount * apy * numDays) / denominator;
+    totalReturn = amount + interest;
+}
+
 
     // ✅ Set staking APY
     function setStakingAPY(uint256 numDays, uint256 apy) external onlyOwner {
@@ -340,50 +291,66 @@ contract SikkaStakingDecentralize {
         levelRewards = newRewards;
     }
 
-    function claim(uint256 _positionId) external onlyRegistered {
-        address userAddress = msg.sender;
-        User storage user = users[userAddress];
-        Stake[] storage stakes = user.stakes;
+   function claim(uint256 _positionId) external onlyRegistered {
+    address userAddress = msg.sender;
+    User storage user = users[userAddress];
+    Stake[] storage stakes = user.stakes;
 
-        bool found = false;
+    bool found = false;
 
-        for (uint256 i = 0; i < stakes.length; i++) {
-            if (stakes[i].positionId == _positionId && !stakes[i].claimed) {
-                require(
-                    block.timestamp >=
-                        stakes[i].timestamp + (stakes[i].numDays * 1 days),
-                    "Staking period not yet completed"
-                );
+    for (uint256 i = 0; i < stakes.length; i++) {
+        if (stakes[i].positionId == _positionId && !stakes[i].claimed) {
+            require(
+                block.timestamp >= stakes[i].timestamp + (stakes[i].numDays * 1 days),
+                "Staking period not yet completed"
+            );
 
-                uint256 apy = stakingAPY[stakes[i].numDays];
-                uint256 interest = (stakes[i].amount *
-                    apy *
-                    stakes[i].numDays) / (100 * 365);
-                uint256 totalAmount = stakes[i].amount + interest;
+            uint256 apy = stakingAPY[stakes[i].numDays];
+            uint256 denominator;
 
-                require(
-                    usdtToken.balanceOf(address(this)) >= totalAmount,
-                    "Insufficient contract balance"
-                );
-
-                stakes[i].claimed = true;
-                bool success = usdtToken.transfer(userAddress, totalAmount);
-                require(success, "USDT transfer failed");
-
-                emit Claimed(
-                    userAddress,
-                    stakes[i].stakeId,
-                    stakes[i].amount,
-                    interest
-                );
-
-                found = true;
-                break;
+            if (stakes[i].numDays == 30) {
+                denominator = 100 * 30;
+            } else if (stakes[i].numDays == 60) {
+                denominator = 100 * 60;
+            } else if (stakes[i].numDays == 90) {
+                denominator = 100 * 90;
+            } else if (stakes[i].numDays == 120) {
+                denominator = 100 * 120;
+            } else if (stakes[i].numDays == 180) {
+                denominator = 100 * 180;
+            } else if (stakes[i].numDays == 365) {
+                denominator = 100 * 365;
+            } else {
+                revert("Unsupported staking duration");
             }
-        }
 
-        require(found, "Stake not found or already claimed");
+            uint256 interest = (stakes[i].amount * apy * stakes[i].numDays) / denominator;
+            uint256 totalAmount = stakes[i].amount + interest;
+
+            require(
+                usdtToken.balanceOf(address(this)) >= totalAmount,
+                "Insufficient contract balance"
+            );
+
+            stakes[i].claimed = true;
+            bool success = usdtToken.transfer(userAddress, totalAmount);
+            require(success, "USDT transfer failed");
+
+            emit Claimed(
+                userAddress,
+                stakes[i].stakeId,
+                stakes[i].amount,
+                interest
+            );
+
+            found = true;
+            break;
+        }
     }
+
+    require(found, "Stake not found or already claimed");
+}
+
 
     function claimEmergency(uint256 _positionId) external onlyRegistered {
         address userAddress = msg.sender;
@@ -432,51 +399,104 @@ contract SikkaStakingDecentralize {
         require(found, "Stake not found or already claimed");
     }
 
+    // function getStakeByPositionId(uint256 _positionId)
+    //     external
+    //     view
+    //     returns (
+    //         address user,
+    //         uint256 stakeId,
+    //         uint256 amount,
+    //         uint256 startDate,
+    //         uint256 endDate,
+    //         uint256 apy,
+    //         uint256 perDayInterest,
+    //         bool status
+    //     )
+    // {
+    //     address userAddr = positionIdToUser[_positionId];
+    //     require(userAddr != address(0), "Invalid positionId");
+
+    //     Stake[] memory stakes = users[userAddr].stakes;
+    //     for (uint256 i = 0; i < stakes.length; i++) {
+    //         if (stakes[i].positionId == _positionId) {
+    //             Stake memory s = stakes[i];
+
+    //             uint256 apyRate = stakingAPY[s.numDays];
+    //             uint256 end = s.timestamp + (s.numDays * 1 days);
+    //             bool isActive = !s.claimed && block.timestamp < end;
+
+    //             // ✅ Correct daily interest logic: (amount * apy / 100) / 365
+    //             uint256 dailyInterest = (s.amount * apyRate) / 100 / 365;
+
+    //             return (
+    //                 userAddr,
+    //                 s.stakeId,
+    //                 s.amount,
+    //                 s.timestamp,
+    //                 end,
+    //                 apyRate,
+    //                 dailyInterest,
+    //                 isActive
+    //             );
+    //         }
+    //     }
+
+    //     revert("Stake not found");
+    // }
+
     function getStakeByPositionId(uint256 _positionId)
-        external
-        view
-        returns (
-            address user,
-            uint256 stakeId,
-            uint256 amount,
-            uint256 startDate,
-            uint256 endDate,
-            uint256 apy,
-            uint256 perDayInterest,
-            bool status
-        )
-    {
-        address userAddr = positionIdToUser[_positionId];
-        require(userAddr != address(0), "Invalid positionId");
+    external
+    view
+    returns (StakeDetails memory)
+{
+    address userAddr = positionIdToUser[_positionId];
+    require(userAddr != address(0), "Invalid positionId");
 
-        Stake[] memory stakes = users[userAddr].stakes;
-        for (uint256 i = 0; i < stakes.length; i++) {
-            if (stakes[i].positionId == _positionId) {
-                Stake memory s = stakes[i];
+    Stake[] memory stakes = users[userAddr].stakes;
+    for (uint256 i = 0; i < stakes.length; i++) {
+        if (stakes[i].positionId == _positionId) {
+            Stake memory s = stakes[i];
 
-                uint256 apyRate = stakingAPY[s.numDays];
-                uint256 end = s.timestamp + (s.numDays * 1 days);
-                bool isActive = !s.claimed && block.timestamp < end;
+            uint256 apyRate = stakingAPY[s.numDays];
+            uint256 end = s.timestamp + (s.numDays * 1 days);
+            bool isActive = !s.claimed && block.timestamp < end;
 
-                // ✅ Correct daily interest logic: (amount * apy / 100) / 365
-                uint256 dailyInterest = (s.amount * apyRate) / 100 / 365;
-
-                return (
-                    userAddr,
-                    s.stakeId,
-                    s.amount,
-                    s.timestamp,
-                    end,
-                    apyRate,
-                    dailyInterest,
-                    isActive
-                );
+            // ✅ Compute per-day interest using updated logic
+            uint256 denominator;
+            if (s.numDays == 30) {
+                denominator = 100 * 30;
+            } else if (s.numDays == 60) {
+                denominator = 100 * 60;
+            } else if (s.numDays == 90) {
+                denominator = 100 * 90;
+            } else if (s.numDays == 120) {
+                denominator = 100 * 120;
+            } else if (s.numDays == 180) {
+                denominator = 100 * 180;
+            } else if (s.numDays == 365) {
+                denominator = 100 * 365;
+            } else {
+                revert("Unsupported staking duration");
             }
-        }
 
-        revert("Stake not found");
+            uint256 totalInterest = (s.amount * apyRate * s.numDays) / denominator;
+            uint256 dailyInterest = totalInterest / s.numDays;
+
+            return StakeDetails({
+                user: userAddr,
+                stakeId: s.stakeId,
+                amount: s.amount,
+                startDate: s.timestamp,
+                endDate: end,
+                apy: apyRate,
+                perDayInterest: dailyInterest,
+                status: isActive
+            });
+        }
     }
 
+    revert("Stake not found");
+}
     function getPositionIds(address _user)
         external
         view
