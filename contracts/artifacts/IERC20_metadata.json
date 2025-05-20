@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.30+commit.73712a01"
+		"version": "0.8.0+commit.c7dfd78e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -93,7 +93,7 @@
 		"compilationTarget": {
 			"contracts/roy.sol": "IERC20"
 		},
-		"evmVersion": "prague",
+		"evmVersion": "istanbul",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -106,11 +106,11 @@
 	},
 	"sources": {
 		"contracts/roy.sol": {
-			"keccak256": "0x72f4f520d67728b6702a77bf82786cabfe614ff5c84bea7c328dc125e5a0be81",
+			"keccak256": "0xe0334600b48085bf1d45f394a9b91bcda6dcd438d9a400388e5dfee2858f56c0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2ff104d1ddf566942d72aff762c4fef9fca9e97a0f19c0474c819f1cffe9ef4c",
-				"dweb:/ipfs/QmY9aXQ7mREidNSs42DdDt63ZvJLQSrwGr6JD6aa9NGZiW"
+				"bzz-raw://92dd1712163f7488be462c70435ba54ae1f2be1baacd861c2badd0f72c4648a6",
+				"dweb:/ipfs/QmPF7mMkRepvioZxBSRodmk5JckM9gme4LKtrtVqRAaadC"
 			]
 		}
 	},
