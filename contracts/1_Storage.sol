@@ -54,10 +54,14 @@ contract SikkaStakingDecentralize {
         bool registered;
     }
 
-    struct ReferralIncomeView {
-        address referralAddress;
-        uint256 incomeEarned;
+    struct LevelIncomeData {
+        address receiverAddress;
+        uint256 stakeId;
+        uint256 stakeAmount;
+        uint256 incomeReceived;
+        address uplineAddress;
         uint256 timestamp;
+        uint8 level;
     }
 
     mapping(address => User) public users;
@@ -75,6 +79,8 @@ contract SikkaStakingDecentralize {
         uint256 amount,
         uint256 reward
     );
+
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     modifier onlyRegistered() {
         require(users[msg.sender].registered, "Not registered");
@@ -105,102 +111,95 @@ contract SikkaStakingDecentralize {
         );
     }
 
- function stake(uint256 numDays, uint256 amount) external onlyRegistered {
-    require(amount > 0, "Stake amount must be greater than 0");
-    require(stakingAPY[numDays] > 0, "Invalid staking duration");
+    function stake(uint256 numDays, uint256 amount) external onlyRegistered {
+        require(amount > 0, "Stake amount must be greater than 0");
+        require(stakingAPY[numDays] > 0, "Invalid staking duration");
 
-    address referrer = users[msg.sender].referrer;
+        address referrer = users[msg.sender].referrer;
 
-    if (referrer != address(0)) {
-        require(users[referrer].stakes.length > 0, "Referrer must stake before you can stake");
-    }
+        if (referrer != address(0)) {
+            require(users[referrer].stakes.length > 0, "Referrer must stake before you can stake");
+        }
 
-    bool success = usdtToken.transferFrom(msg.sender, address(this), amount);
-    require(success, "USDT transfer failed");
+        bool success = usdtToken.transferFrom(msg.sender, address(this), amount);
+        require(success, "USDT transfer failed");
 
-    uint256 positionId = ++stakeCounter;
+        uint256 positionId = ++stakeCounter;
 
-    users[msg.sender].stakes.push(
-        Stake({
-            stakeId: stakeCounter,
-            positionId: positionId,
-            amount: amount,
-            timestamp: block.timestamp,
-            numDays: numDays,
-            claimed: false
-        })
-    );
+        users[msg.sender].stakes.push(
+            Stake({
+                stakeId: stakeCounter,
+                positionId: positionId,
+                amount: amount,
+                timestamp: block.timestamp,
+                numDays: numDays,
+                claimed: false
+            })
+        );
 
-    positionIdToUser[positionId] = msg.sender;
+        positionIdToUser[positionId] = msg.sender;
 
-    bool isFirstStake = users[msg.sender].stakes.length == 1;
-    address upline = users[msg.sender].referrer;
+        bool isFirstStake = users[msg.sender].stakes.length == 1;
+        address upline = users[msg.sender].referrer;
 
-    for (uint8 i = 0; i < levelRewards.length && upline != address(0); i++) {
-        uint256 reward = 0;
+        for (uint8 i = 0; i < levelRewards.length && upline != address(0); i++) {
+            uint256 reward = 0;
 
-        if (i == 0) {
-            if (isFirstStake) {
-                // 5% Direct + 5% Level 1
-                uint256 directReward = (amount * 5) / 100;
-                uint256 level1Reward = (amount * 5) / 100;
+            if (i == 0) {
+                if (isFirstStake) {
+                    uint256 directReward = (amount * 5) / 100;
+                    uint256 level1Reward = (amount * 5) / 100;
 
-                require(usdtToken.balanceOf(address(this)) >= directReward + level1Reward, "Insufficient contract balance");
+                    require(usdtToken.balanceOf(address(this)) >= directReward + level1Reward, "Insufficient contract balance");
 
-                require(usdtToken.transfer(upline, directReward), "Direct referral transfer failed");
-                require(usdtToken.transfer(upline, level1Reward), "Level 1 reward transfer failed");
+                    require(usdtToken.transfer(upline, directReward), "Direct referral transfer failed");
+                    require(usdtToken.transfer(upline, level1Reward), "Level 1 reward transfer failed");
 
-                directReferralIncome[upline] += directReward;
-                users[upline].totalIncome += directReward + level1Reward;
-                users[upline].levelIncome += level1Reward;
+                    directReferralIncome[upline] += directReward;
+                    users[upline].totalIncome += directReward + level1Reward;
+                    users[upline].levelIncome += level1Reward;
 
-                // ✅ Only update for direct reward
-                ReferralInfo[] storage refs = directReferrals[upline];
-                for (uint256 j = 0; j < refs.length; j++) {
-                    if (refs[j].referralAddress == msg.sender) {
-                        refs[j].incomeEarned += directReward; // ✅ Only direct reward, not level
-                        break;
+                    ReferralInfo[] storage refs = directReferrals[upline];
+                    for (uint256 j = 0; j < refs.length; j++) {
+                        if (refs[j].referralAddress == msg.sender) {
+                            refs[j].incomeEarned += directReward;
+                            break;
+                        }
                     }
+                } else {
+                    reward = (amount * levelRewards[i]) / 100;
+                    require(usdtToken.balanceOf(address(this)) >= reward, "Insufficient contract balance");
+                    require(usdtToken.transfer(upline, reward), "Level 1 reward transfer failed");
+
+                    users[upline].totalIncome += reward;
+                    users[upline].levelIncome += reward;
                 }
             } else {
                 reward = (amount * levelRewards[i]) / 100;
                 require(usdtToken.balanceOf(address(this)) >= reward, "Insufficient contract balance");
-                require(usdtToken.transfer(upline, reward), "Level 1 reward transfer failed");
+                require(usdtToken.transfer(upline, reward), "Level reward transfer failed");
 
                 users[upline].totalIncome += reward;
                 users[upline].levelIncome += reward;
-
-                // ❌ Do NOT update directReferralInfo for non-first stake
             }
-        } else {
-            reward = (amount * levelRewards[i]) / 100;
-            require(usdtToken.balanceOf(address(this)) >= reward, "Insufficient contract balance");
-            require(usdtToken.transfer(upline, reward), "Level reward transfer failed");
 
-            users[upline].totalIncome += reward;
-            users[upline].levelIncome += reward;
-
-            // ❌ Do NOT update directReferralInfo for level > 1
+            upline = users[upline].referrer;
         }
-
-        upline = users[upline].referrer;
     }
-}
 
+    // ✅ Ownership transfer function
+    function transferOwnership(address newOwner) external onlyOwner {
+        require(newOwner != address(0), "New owner is the zero address");
+        require(newOwner != owner, "New owner is the same as current owner");
 
-    /// ✅ Fetch direct referral income for a user (array of structs)
-    function getDirectReferralIncomeData(address user) external view returns (ReferralIncomeView[] memory) {
-        ReferralInfo[] memory refs = directReferrals[user];
-        ReferralIncomeView[] memory data = new ReferralIncomeView[](refs.length);
+        address previousOwner = owner;
+        owner = newOwner;
 
-        for (uint256 i = 0; i < refs.length; i++) {
-            data[i] = ReferralIncomeView({
-                referralAddress: refs[i].referralAddress,
-                incomeEarned: refs[i].incomeEarned,
-                timestamp: refs[i].timestamp
-            });
+        if (!users[newOwner].registered) {
+            users[newOwner].registered = true;
+            allUsers.push(newOwner);
         }
 
-        return data;
+        emit OwnershipTransferred(previousOwner, newOwner);
     }
 }

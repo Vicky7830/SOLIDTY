@@ -87,17 +87,17 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
 		"contracts/SikkaStaking.sol": {
-			"keccak256": "0x9b2113d8fa867d4980cc8cf5446a3aec2a206856b8f6e6f19d9cf65d27f9be84",
+			"keccak256": "0x26eaee476f89a64e4c4d365167cacc634a11e97ce9a0b187f51bcea131d7eacd",
 			"urls": [
-				"bzz-raw://3c2d9a4bcae8cdecf5afe9587ea1c16dd41d08692e6a42d692fa7ffd7849393c",
-				"dweb:/ipfs/QmSns5xdpAjr2r8zBZvWbsg5AyKDimHg8CF5xiQyWATwfM"
+				"bzz-raw://1a85c93c1719ed730baa34d825f19d80c18c83c41246a68cad4aad3635ac0292",
+				"dweb:/ipfs/QmUAsUkERaSaxwJvJ5hD8ucSLCQ1HDfXu5DiPnUh4seyD2"
 			]
 		},
 		"github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/interfaces/IUniswapV2Migrator.sol": {

