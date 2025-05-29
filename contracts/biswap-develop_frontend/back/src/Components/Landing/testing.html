@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TronLink Wallet Connect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .connect-btn {
+            background-color: #ff6c00;
+            color: white;
+            font-size: 16px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .connect-btn:hover {
+            background-color: #ff9f3f;
+        }
+
+        .wallet-address {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button id="connectButton" class="connect-btn">Connect Wallet</button>
+        <div id="walletAddress" class="wallet-address"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tronlink-extension"></script>
+    <script>
+        // Check if TronLink is available
+        window.addEventListener('load', function() {
+            // Ensure TronLink is present and ready
+            if (typeof window.tronLink !== "undefined") {
+                document.getElementById('connectButton').style.display = 'block';
+            } else {
+                alert("Please install TronLink Wallet extension to proceed.");
+            }
+
+            // Connect wallet logic
+            document.getElementById('connectButton').addEventListener('click', async function() {
+                try {
+                    // Request TronLink to connect and get the wallet address
+                    const address = await tronLink.request({ method: 'tron_requestAccounts' });
+
+                    if (address && address.length > 0) {
+                        // Display the wallet address
+                        const walletAddress = address[0];
+                        document.getElementById('walletAddress').innerText = `Wallet Address: ${walletAddress}`;
+                        document.getElementById('walletAddress').style.display = 'block';
+                    } else {
+                        alert("No wallet address found.");
+                    }
+                } catch (error) {
+                    console.error('Error connecting to TronLink:', error);
+                    alert("Failed to connect wallet. Ensure TronLink is properly configured.");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+.AddLiquidityHead{
+    width: 100%;
+    height: 2.8rem;
+    /* margin-top: 1rem; */
+}
+
+.AddLiquidityHead svg{
+    font-size: 1.8rem;
+    margin-bottom: .4rem;
+    color: var(--yellow);
+}
+
+.AddLiquidityHead span{
+    font-size: 1.4rem;
+    letter-spacing: .4px;
+    font-weight: 800 !important;
+    margin-bottom: .5rem;
+    color: var(--yellowo);
+
+}
+
+.pairAmount span:nth-child(1){
+    font-size: 1rem;
+    color: var(--gray);
+    font-weight: 500;
+    letter-spacing: .4px;
+
+}
+
+.pairAmount span:nth-child(2){
+    font-size: .9rem;
+    color: var(--gray);
+    margin-bottom: .5rem;
+    font-weight: 500;
+}
+
+.coinBalanceCont{
+    width: 100%;
+    height: 2.4rem;
+}
+
+
+.coinBalanceA{
+    width: 40%;
+    height: 100%;
+}
+
+.coinBalanceA span:nth-child(1){
+    width: 2.4rem;
+    height: 2.4rem;
+
+}
+
+.coinBalanceA span:nth-child(2){
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+font-weight: 500;
+    color: var(--black);
+}
+
+.coinBalanceA span:nth-child(1){
+    display: flex;
+
+}
+
+
+.coinBalanceA span:nth-child(3) {
+width: 2rem;
+display: flex;
+align-items: center;
+
+height: 100%;
+color: var(--black);
+
+/* background: red; */
+
+}
+
+.coinBalanceB{
+    width: 60%;
+    height: 100%;
+    font-size: .9rem;
+}
+
+.coinBalanceB span{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: .8rem;
+font-weight: 600;
+color: var(--gray);
+}
+
+.coinBalanceB button{
+
+width: 2.7rem;
+border-radius: .4rem;
+border: none;
+background: var(--wallet-btn);
+font-size: .7rem;
+opacity: .6;
+
+}
+
+.liqSwapFromInput{
+    width: 100%;
+    height: 2.8rem;
+    border-radius: .4rem;
+    background: var(--input-strip);
+    padding: .8rem;
+    color: var(--black);
+    font-weight: 600;
+    border: none;
+}
+
+
+
+/* exchange cont  */
+
+.exchangeSymboldCont {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.exchangeSymboldCont svg {
+    font-size: 1.4rem;
+    color: var(--gray-text);
+}
+
+/* FeesTierConst */
+.FeesTierConst {
+width: 100%;
+height: 2.8rem;
+/* background: forestgreen; */
+}
+
+.FeesTierConst h5{
+height: 100%;
+flex-wrap: nowrap;
+padding: 0;
+margin: 0;
+}
+
+.FeesTierConst svg:nth-child(2){
+    width: 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.FeesTierConst span:nth-child(3){
+    background: var(--success-bg);
+    font-size: .6rem;
+    font-weight: 700;
+    padding: .2rem .7rem;
+    border-radius: .6rem;
+    color: var(--success);
+}
+
+.FeesTierConst span svg{
+color: var(--red);
+}
+
+.FeesTierAprPlans{
+    width: 100%;
+    min-height: 7rem;
+    /* background: navy; */
+padding: .8rem .3rem;
+}
+
+/* .FeesAprPlan{
+    width: 23%;
+   height: 7rem;
+    border-radius: .6rem;
+    padding: .6rem  .3rem;
+    letter-spacing: .4px;
+    cursor: pointer;
+    border: .12rem solid var(--gray-text);
+    color: var(--black);
+} */
+
+.FeesAprPlan p{
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.FeesAprPlan span{
+    font-size: .65rem;
+    font-weight: 700;
+    background: var(--gray-bg-light);
+    color: var(--gray-text);
+    width:95%;
+    margin: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: .2rem;
+    justify-content: center;
+    border-radius: .6rem;
+
+}
+
+.LiquiditySubmitbtn{
+    width: 100%;
+    height: 2.8rem;
+    border-radius: .6rem;
+    background: var(--yellow-light);
+    border: none;
+}
+
+.minMaxPriceCont{
+    width: 100%;
+    height: 5rem;
+}
+
+.MinPriceCont{
+    width: 46%;
+    height: 100%;
+}
+
+.MaxPriceCont{
+    width: 46%;
+    height: 100%;
+}
+
+.MaxPriceCont span, .MinPriceCont span{
+font-size: .8rem;
+}
+
+
+.MinPriceCont input,.MaxPriceCont input{
+    width: 100%;
+    height: 2.8rem;
+    border-radius: .4rem;
+    background: var(--input-strip);
+    border: none;
+    color: var(--black);
+    font-weight: 600;
+    padding: .8rem;
+    text-align: center;
+}
+
+
+
+@media screen and (max-width:672px) {
+    
+    .AddLiquidityHead svg{
+        color: var(--gray);
+    }
+    
+    .AddLiquidityHead span{
+        color: var(--green-effect2);
+    }
+
+
+    .coinBalanceCont{
+        width: 100%;
+        max-height: unset;
+        min-height: 2.4rem;
+        margin-bottom: .1rem;
+    }
+    
+    .coinBalanceB{
+        width: 60%;
+        flex-wrap: wrap;
+    }
+
+    .FeesTierAprPlans{
+        width: 100;
+        flex-direction: column;
+    }
+
+    .FeesAprPlan{
+        width: 100% !important;
+        min-height: 2.6rem;
+    }
+    .FeesAprPlan h5{
+font-size: 1rem;
+    }
+
+    .FeesAprPlan span{
+     height: 2.4rem;   
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 1rem;
+    }
+     
+
+
+}

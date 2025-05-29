@@ -1,0 +1,208 @@
+.TokenListCont {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-dark);
+    position: absolute;
+    top: 0;
+    z-index: 30;
+    bottom: 0;
+    left: 0;
+}
+
+.darkBackground {
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 8;
+}
+
+.TokenListBox {
+    width: 26rem;
+    min-height: 22rem;
+    border-radius: 1.2rem;
+    margin: 4rem 0;
+    padding: 1.3rem 1.6rem 3rem 1.6rem;
+    background-color: var(--white);
+
+}
+
+.popupHeader {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 1rem; */
+    padding-top: 2rem;
+
+}
+
+.popupHeader h4 {
+    min-width: 85%;
+
+    color: var(--black);
+    font-weight: 600;
+}
+
+.popupHeader h1 {
+    height: 100%;
+    min-width: 22%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: end;
+    position: relative;
+    /* transform: translateX(1rem);  */
+    color: var(--black);
+    font-size: 1.6rem;
+    font-weight: 600;
+
+    /* background-color: red; */
+}
+
+.popupHeader h1 svg {
+ margin-top: .1rem;
+}
+
+.h2para{
+width: 100%;
+height: 2rem;
+/* background: aqua; */
+display: flex;
+align-items: center;
+justify-content: flex-start;
+font-size: .9rem;    
+   /* color: var(--bluish); */
+   /* background: saddlebrown; */
+
+}
+
+.h2para svg{
+    font-size: 1.1rem;
+   color: var(--gray);
+
+}
+
+/* .h2para svg:nth-child(1){
+   color: var(--gray);
+}
+
+
+.h2para svg:nth-child(2){
+    font-size: 1.2rem;
+} */
+
+
+.btnGroupCont{
+    width: 100%;
+    height: 3rem;
+}
+
+.traxbtns{
+    width: 32%;
+    height: 2.6rem;
+    font-size: .9rem;
+    border-radius: .4rem;
+    border: none;
+    inset: none;
+    background-color: var(--wallet-btn);
+}
+
+.SlippagebtnGroupCont{
+    width: 100%;
+    height: 3rem;
+}
+
+.slipperageOption{
+    width:18%;
+    height: 2.6rem;
+    font-size: .9rem;
+    border-radius: .4rem;
+    border: .12rem solid var(--input-strip);
+    letter-spacing: .8px;
+    inset: none;
+    background-color:transparent;
+    color: var(--wallet-btn);
+
+}
+.SlippagebtnGroupCont input{
+    width:35%;
+    color: var(--gray-text);
+    font-weight: 500;
+    padding: .8rem;
+}
+
+.deadlineInputgroup{
+    width: 100%;
+    height: 2.8rem;
+    border-radius: .5rem;
+    border: none;
+    font-size: .9rem;
+    /* background: saddlebrown; */
+}
+
+.deadlineInput{
+    width: 75%;
+    height: 100%;
+    border-radius: .5rem;
+    border: none;
+    inset: 0;
+    padding: .8rem;
+    font-size: .9rem;
+    /* background: rgb(255, 241, 231); */
+    background: var(--input-strip);
+    color: var(--gray-text);
+    font-weight: 600;
+
+
+}
+
+.deadlineInputgroup span{
+    width: 20%;
+    height: 100%;
+    border-radius: .5rem;
+    /* background: gold; */
+    color: var(--gray);
+}
+
+.saveChangesBtn{
+    width: 100%;
+    height: 2.8rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: .6rem;
+    inset: 0;
+    font-size: .9rem;
+    letter-spacing: .6px;
+    color: var(--white);
+    font-weight: 600;
+    background: var(--red);
+}
+
+
+
+@media screen and (max-width:572px) {
+    .TokenListBox {
+        width: 94%;
+        min-height: 16em;
+        max-height: 80vh;
+        margin: 4rem 0;
+        padding: 1rem ;
+        position: relative;
+        top: 1%;
+    
+    }
+    .coinListDiv ul {
+        padding: 0;
+        max-height: 40vh;
+        list-style: none;
+        overflow-y: scroll;
+    }
+    .coinSearchDiv input::placeholder {
+        font-weight: 600;
+        text-overflow: ellipsis;
+    }
+    
+}

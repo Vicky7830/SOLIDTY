@@ -1,0 +1,337 @@
+.NavbarCont {
+  width: 100%;
+  height: 5rem;
+  background: url("../../assets/bnr1.jpg") no-repeat;
+  background-color: var(--yellowl);
+  background-position: center;
+  background-blend-mode: overlay;
+  position: relative;
+}
+
+.NavbarSlice1 {
+  width: 50%;
+  height: 5rem;
+  /* padding: 0 1rem; */
+}
+
+.LogoContainer {
+  width: 25%;
+  height: 100%;
+  /* padding: 0 1rem; */
+
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 5.2rem;
+}
+
+.LogoContainer span {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  color: var(--text-white);
+}
+
+.navList {
+  width: 40%;
+}
+
+.navList ul {
+  list-style: none;
+  height: 100%;
+}
+
+.navListul li {
+  text-decoration: none;
+  font-size: 1rem;
+  /* display: inline-block; */
+  height: 100%;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  color: var(--text-white);
+  position: relative;
+}
+
+.navListul li:hover {
+  color: var(--white-blue);
+}
+
+/* menu 1 none till navListul hover   */
+.NavSublist {
+  position: fixed;
+  z-index: 1001;
+  top: 5rem;
+  left: 15%;
+  border-radius: 0.6rem;
+  /* transform: translate3d(12rem , 6rem); */
+}
+
+#tradeDropdown {
+  display: none;
+  z-index: 3;
+}
+
+#trade:hover #tradeDropdown {
+  display: block;
+}
+
+.NavSublist ul {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 0.6rem;
+}
+
+.NavSublist ul li {
+  width: 18rem;
+  min-height: 3rem;
+
+  margin-top: 1.4rem;
+}
+
+.li1 {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.li1 span {
+  background: var(--yellow-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.8rem;
+  height: 3rem;
+  border-radius: 0.6rem;
+}
+
+.exchange_icon {
+  font-size: 1.8rem;
+}
+
+.li2 {
+  width: 80%;
+  height: 100%;
+}
+
+.li2a {
+  padding-left: 0.4rem;
+  width: 100%;
+  height: 50%;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: var(--black-text);
+}
+
+.li2b {
+  padding-left: 0.4rem;
+
+  width: 100%;
+  height: 50%;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  color: var(--grayish-text);
+}
+
+.navBuyBtnCont {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 0.4rem;
+}
+
+.navBuyBtnCont span {
+  height: 50%;
+  border-left: 2px solid var(--yellowl);
+}
+
+.navBuyBtnCont button {
+  width: 70%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  font-weight: 500;
+
+  outline: none;
+}
+
+.navBuyBtnCont button:hover {
+  filter: drop-shadow(1px 1px 4px var(--yellow));
+}
+
+.NavbarSlice2 {
+  width: 50%;
+  height: 5rem;
+  padding-right: 2.3rem;
+}
+
+.Walletbtn {
+  background: var(--yellow);
+  width: 12.5rem;
+  height: 2.6rem;
+  border-radius: 0.6rem;
+  color: var(--text-white);
+  font-size: 1rem;
+  cursor: pointer;
+  /* border: 1px solid var(--white); */
+
+  font-weight: 500;
+}
+
+.Walletbtn:hover {
+  box-shadow: 1px 0 1px 3px var(--grayish-text);
+}
+
+.Walleti {
+  /* background: var(--icon-white) !important; */
+  color: var(--icon-white) !important;
+  font-size: 1.2rem;
+}
+
+.NavSublist {
+  background-color: var(--white);
+}
+
+#trade {
+  z-index: 999;
+}
+
+#walletAddress {
+  width: 7rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Hamburger {
+  display: none;
+}
+
+
+
+@media screen and (max-width:1032px) {
+  /* .navList {
+    display: none;
+  } */
+
+  .NavbarSlice1 {
+    padding-left: .7rem;
+  }
+
+  .NavbarSlice2 {
+    padding-right: .7rem;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .Hamburger {
+    display: block;
+    height: 100%;
+    width: 2.4rem;
+    color: var(--yellow);
+    letter-spacing: 1rem;
+
+  }
+
+
+
+  .navBuyBtnCont {
+    display: none;
+  }
+
+  .navBuyBtnCont span,
+  .navBuyBtnCont button {
+    display: none;
+  }
+
+
+  /* #trade:nth-child(1) #tradeDropdown,
+  #trade:nth-child(2) #tradeDropdown,
+  #trade:nth-child(3) #tradeDropdown {
+    display: block;
+    position: relative;
+  }
+
+  .NavSublist {
+    width: 100%;
+    height: 1rem;
+    left: 0;
+    background: transparent;
+  }
+
+
+  #trade:nth-child(1) #tradeDropdown {
+    top: 0rem;
+    left: 1rem;
+    background: red;
+    z-index: 89999999999;
+    position: absolute;
+    height: 9rem;
+  } */
+
+  .NavSublist {
+    /* position: fixed;
+    top: 5rem;
+    left: 0;
+    border-radius: 0.6rem; */
+    display: none;
+  }
+
+  /* .NavSublist ul {
+    padding-left: 2rem;
+    width: 90%;
+
+  }
+
+  .NavSublist ul li {
+    width: 100%;
+    min-height: 2rem;
+    max-height: 2.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .NavSublist ul li:nth-child(1) {
+    margin-top: .2rem;
+
+  }
+
+
+  #trade:nth-child(2) #tradeDropdown {
+    top: 9.4rem;
+    left: 1rem;
+    background: darkgoldenrod;
+    z-index: 89999999999;
+    position: absolute;
+    height: 9rem;
+
+  }
+
+
+  #trade:nth-child(3) #tradeDropdown {
+    top: 18.8rem;
+    left: 1rem;
+    background: silver;
+    height: 10rem;
+
+  }
+
+ */
+
+ .navName{
+  display: none;
+}
+
+
+
+
+}

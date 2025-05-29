@@ -1,0 +1,13 @@
+.LandingCont{
+    width: 100%;
+    min-height: 100vh;
+    background: url("../../assets/bnr1.jpg") fixed no-repeat;
+    /* background-color: var(--blue); */
+    /* background: radial-gradient(79.87% 58.68% at 50% 0%, var(--bg-blue1) 0%, var(--bg-blue2) 49%,var(--bg-blue3) 100%);    background: var(--bg, radial-gradient( 147.99% 163.2% at 70.13% -3.28%, #2667fe 0%, #0041da 9.72%, #030181 21.71%, #001343 36.96%, #000 69.59% ) ); */
+    background-color: var(--yellowl);
+        
+        background-blend-mode: overlay;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}

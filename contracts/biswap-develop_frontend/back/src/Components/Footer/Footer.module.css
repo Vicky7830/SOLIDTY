@@ -1,0 +1,368 @@
+.Footer {
+    width: 100%;
+    min-height: 14rem;
+    padding: 2rem;
+    /* background: var(--footer-strip); */
+    padding-top: 5rem;
+
+    background: url("../../assets/bnr1.jpg") no-repeat;
+    background-color: var(--green-effect2);
+    background-position: center;
+    background-blend-mode: overlay;
+    background-repeat: repeat-y;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+
+}
+
+.Footersub1 {
+    width:
+        40%;
+    min-height: 12rem;
+}
+
+.CoinDetailsBox {
+    min-width: 28rem;
+    min-height: 16rem;
+    border-radius: 1.4rem;
+    padding: 1.1rem;
+    background: var(--green-effect2);
+}
+
+.CoinDetailshead {
+    width: 100%;
+    height: 3.6rem;
+}
+
+.CoinDetailsContent {
+    width: 100%;
+    min-height: 10rem;
+    margin-bottom: 1rem;
+
+}
+
+.CoinDetailsContent tr td {
+    min-height: 1.2rem;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    margin-top: .6rem;
+    font-size: .8rem;
+    font-weight: bold;
+    text-align: left;
+
+}
+
+.CoinDetailsContent tr {
+    width: 100%;
+    min-height: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-white);
+}
+
+.CoinDetailshead_1 {
+    width: 45%;
+    height: 100%;
+}
+
+.img_cont {
+    width: 100%;
+    height: 100%;
+
+}
+
+
+.img_cont h6 {
+    color: var(--text-white);
+}
+
+.img_cont h5 {
+    color: var(--text-white);
+}
+
+
+.img_cont img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    object-position: center center;
+}
+
+.CoinDetailshead_2 {
+    width: 55%;
+    height: 100%;
+}
+
+.CoinDetailshead_2 button {
+    width: 6rem;
+    height: 2.4rem;
+    border-radius: .4rem;
+    font-size: .86rem;
+    font-weight: 500;
+    /* background: var(--green-effect2); */
+    border: 1px solid var(--white);
+}
+
+.Footersub2 {
+    width: 60%;
+    min-height: 12rem;
+
+}
+
+.column_container {
+    width: 10rem;
+    min-height: 12rem;
+    margin-left: 1rem;
+}
+
+.column_container_community {
+    width: 13rem;
+    min-height: 12rem;
+    margin-left: 1rem;
+}
+
+.column_container h5 {
+    font-weight: 40%;
+    font-weight: 500;
+    color: var(--text-white);
+}
+
+.column_container ul {
+    padding-left: 0;
+    text-align: center;
+
+}
+
+.column_container ul li {
+    display: flex;
+    text-align: center;
+    margin-top: .6rem;
+    justify-content: center;
+    text-decoration: none !important;
+}
+
+.column_container ul li a {
+    color: var(--text-white);
+    font-weight: 500;
+    font-size: .95rem;
+}
+
+._community_icons {
+    width: 100%;
+    min-height: 3rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    margin-top: 1rem;
+    row-gap: 1rem;
+    color: var(--text-white);
+    padding: 0 1rem;
+}
+
+._community_icons_icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    font-weight: 500;
+}
+
+.morebtns_a {
+    margin: auto;
+    margin-top: 1.4rem;
+    border-radius: .6rem;
+    display: flex;
+    align-items: center;
+    width: 10rem;
+    justify-content: center;
+    column-gap: .3rem;
+    height: 2.7rem;
+    background: linear-gradient(270deg, var(--pink-gradient), var(--sky-gradient));
+
+}
+
+._community_marketplace_icon {
+    font-size: 1.8rem;
+    color: var(--text-white) !important;
+}
+
+.morebtns_marketplacecaption {
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--text-white);
+
+}
+
+.morebtns_b {
+    margin: auto;
+    margin-top: .6rem;
+    border-radius: .6rem;
+    display: flex;
+    align-items: center;
+    width: 9rem;
+    justify-content: center;
+    column-gap: .3rem;
+    height: 2.5rem;
+}
+
+
+.morebtns_b img {
+    width: 100%;
+    height: 100%;
+    object-position: center center;
+    object-fit: contain;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    .Footer {
+        padding: .5rem;
+        padding-top: 3rem;
+        flex-direction: column;
+    }
+
+
+    .Footersub1 {
+        width:
+            94%;
+        margin: auto;
+        min-height: 8rem;
+
+    }
+
+    .CoinDetailsBox {
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 6rem;
+        padding: 1.1rem .6rem 1.1rem .6rem;
+    }
+
+    .CoinDetailshead {
+        width: 100%;
+        height: 3.1rem;
+        font-size: .8rem;
+    }
+
+    .CoinDetailsContent {
+        width: 100%;
+        min-height: 6rem;
+        margin-bottom: 1rem;
+
+    }
+
+    .CoinDetailsContent tr td {
+        min-height: 1.2rem;
+        width: 45%;
+        margin-top: .6rem;
+        font-size: .75rem;
+    }
+
+    .CoinDetailsContent tr {
+        width: 100%;
+        min-height: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-white);
+    }
+
+    .CoinDetailshead_1 {
+        width: 50%;
+        height: 100%;
+    }
+
+    .img_cont {
+        width: 100%;
+        height: 100%;
+
+    }
+
+
+    .img_cont h6 {
+        color: var(--text-white);
+    }
+
+    .img_cont h5 {
+        color: var(--text-white);
+    }
+
+
+    .img_cont img {
+        width: 3rem;
+        height: 3rem;
+        object-fit: contain;
+        object-position: center center;
+    }
+
+    .CoinDetailshead_2 {
+        width: 50%;
+        height: 100%;
+    }
+
+    .CoinDetailshead_2 button {
+        width: 5rem;
+        height: 2.2rem;
+        font-size: .7rem;
+    }
+
+
+
+    .Footersub2 {
+        width: 100%;
+        min-height: 8rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between !important;
+        gap: .5rem;
+        margin-top: .6rem;
+        padding: 2rem 0;
+
+
+    }
+
+    .column_container {
+        width: 41%;
+        min-height: 12rem;
+        margin-left: 1rem;
+    }
+
+    .column_container_community {
+        width: 42%;
+        min-height: 12rem;
+        margin-left: 1rem;
+    }
+
+
+
+    .column_container ul li a {
+        font-size: .85rem;
+    }
+
+    .morebtns_a {
+        width: 100%;
+        height: 2.7rem;
+        background: linear-gradient(270deg, var(--pink-gradient), var(--sky-gradient));
+    }
+
+    ._community_marketplace_icon {
+        font-size: 1.4rem;
+        color: var(--text-white) !important;
+    }
+
+    .morebtns_marketplacecaption {
+        font-size: .9rem;
+        font-weight: 400;
+        padding-top: .2rem;
+    }
+
+    .morebtns_b {
+        width: 100%;
+    }
+
+}

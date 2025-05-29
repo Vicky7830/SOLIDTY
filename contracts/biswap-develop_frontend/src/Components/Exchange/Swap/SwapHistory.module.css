@@ -1,0 +1,298 @@
+.UrLiquidityCont {
+    width: 100%;
+    min-height: 100vh;
+    background: url("../../../assets/bnr1.jpg") fixed no-repeat;
+    background-color: var(--yellowl);
+
+    background-blend-mode: overlay;
+    overflow: hidden;
+    position: relative;
+    padding-top: 3rem;
+
+}
+
+.ClearAll{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+}
+
+.ClearAll span{
+    font-size: .9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.searchCont {
+    width: 90%;
+    height: 3rem;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.searchCont h5 {
+    color: var(--text-white);
+}
+
+.liquidityPoolsTable {
+    width: 80%;
+    min-height: 4rem;
+    margin: auto;
+
+}
+
+
+.liquidityPoolsTable tr th,
+.liquidityPoolsTable tr td {
+    text-align: center;
+    min-width: 16%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--green-effect2);
+    color: var(--text-white);
+
+}
+
+
+.liquidityPoolsTable tr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: var(--green-effect2);
+    min-height: 4.3rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: .6rem;
+    font-weight: 500;
+    color: var(--gray-text);
+    box-shadow: .1rem 0.1rem .5rem .1rem var(--gray-text);
+
+}
+
+.liquidityPoolsTable tr:nth-child(1) {
+
+    background: var(--green-effect2);
+    color: var(--white);
+    box-shadow: .1rem 0.1rem .5rem .1rem var(--gray-text);
+}
+
+
+
+.coinpirsCont {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coinpirsCont img {
+    width: 2rem;
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center center;
+}
+
+.img1 {
+    filter: drop-shadow(1px 1px var(--text-white));
+}
+
+.img2 {
+    margin-left: -1.3rem;
+}
+
+
+.coinSearchDiv {
+    width: 16rem;
+    height: 2.4rem;
+    background: var(--white);
+    padding: .4rem;
+    border-radius: .4rem;
+}
+
+.coinSearchDiv input {
+    width: 85%;
+    height: 100%;
+    text-overflow: ellipsis;
+    background: transparent;
+    border: none;
+    color: var(--gray-text);
+    font-weight: 400;
+    padding: .6rem;
+    /* border-bottom: .1rem solid var(--gray-text); */
+}
+
+.coinSearchDiv span {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--gray-text);
+
+}
+
+
+.Status button {
+    width: 6rem;
+    font-size: .8rem;
+    padding: .2rem;
+    border: none;
+
+    border-radius: .4rem;
+    background: var(--parrot);
+}
+
+.Reward button {
+    width: 5rem;
+    font-size: .8rem;
+    padding: .2rem;
+    border: none;
+
+    border-radius: .4rem;
+    background: var(--wallet-btn);
+    border: 1px solid var(--white);
+
+}
+
+
+.Operation button {
+    font-size: .8rem;
+    padding: .25rem .8rem;
+    border: none;
+
+    border-radius: .4rem;
+    background: var(--red);
+    border: 1px solid var(--white);
+}
+
+.pool_status {
+    color: var(--success);
+}
+
+.APY {
+    background: var(--success);
+    padding: .3rem .6rem;
+    font-size: .7rem;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    gap: .3rem;
+}
+
+.APY svg {
+    color: var(--red);
+}
+
+.mobileDis {
+    display: none;
+}
+
+@media screen and (max-width:972px) {
+
+    .UrLiquidityCont {
+ 
+        padding-top: .5rem;
+    
+    }
+    
+
+
+
+    .searchCont {
+        /* display: none; */
+    margin-bottom: 1.4rem;
+    padding: 0;
+    }
+
+    
+    .searchCont h5{
+        font-size: 1.4rem;
+        color: var(--yellow);
+
+    }
+
+    .coinSearchDiv {
+        width: 100%;
+        background: var(--input-strip);
+    }
+
+    .liquidityPoolsTable{
+        width: 95%;
+    }
+
+    .liquidityPoolsTable tr {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    .liquidityPoolsTable tr td {
+        min-width: 100%;
+        font-size: .9rem;
+        background: var(--green-effect20);
+        border-radius: .4rem;
+        padding: .2rem;
+    }
+
+    .liquidityPoolsTable tr td:nth-child(1) {
+        /* display: none; */
+        gap: .4rem;
+
+    }
+
+    .APY {
+        width: 40%;
+    }
+
+    .liquidityPoolsTable tr td:nth-child(2) {
+        /* display: none; */
+        margin: .6rem 0;
+    }
+
+    .liquidityPoolsTable tr td:nth-child(3) {
+        /* display: none; */
+        /* margin: .6rem 0; */
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+        margin: .6rem 0;
+
+    }
+
+    .liquidityPoolsTable tr td:nth-child(4) {
+        /* display: none; */
+        /* margin: .6rem 0; */
+        margin-top: 1rem;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .liquidityPoolsTable tr td:nth-child(4),
+    .liquidityPoolsTable tr td:nth-child(3) button {
+        margin-top: 0 !important;
+    }
+
+    .Operation span {
+        margin-right: .4rem;
+    }
+
+    .Operation button {
+        margin-bottom: .4rem;
+    }
+
+
+    .liquidityPoolsTable tr td:nth-child(5) {
+        margin-top: .4rem;
+    }
+
+
+    .mobileDis {
+        display: block;
+    }
+
+}

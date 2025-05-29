@@ -1,0 +1,144 @@
+/* body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  height: 100%;
+  overflow: hidden;
+} */
+
+.bid-btn {
+    background: linear-gradient(45deg, rgba(1,11,72,255), #43045e);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    margin-top: 10px;
+    font-size: medium;
+
+    margin-right: 10px; /* Add gap */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+  .bid-btn:hover, .close-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color:linear-gradient(90deg, green, #aec027);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.popup-content {
+    background: linear-gradient(45deg, rgba(1,11,72,255), #43045e);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  color: #fff;
+  animation: popIn 0.5s ease-in-out;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.popup-img {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+}
+
+
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+}
+
+.logo {
+  width: 1200px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.app-background {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 30px 20px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  z-index: 2;
+  color: #fff;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Responsive fixes */
+@media (max-width: 576px) {
+  .glass-card {
+    padding: 20px 15px;
+  }
+
+  .logo {
+    width: 100px;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+}

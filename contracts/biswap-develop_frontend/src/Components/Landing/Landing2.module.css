@@ -1,0 +1,121 @@
+.Landing2Cont{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  background-color: var(--green-effect2);
+  background-blend-mode: overlay;
+    
+
+}
+
+.divLand2Cont{
+  background-color: var(--green-effect2);
+  padding-top: 4rem;
+
+}
+
+.tablecont{
+    width: 80%;
+    height: 90vh;
+    /* overflow-x: scroll; */
+    
+}
+
+.tableImg{
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: .4rem;
+}
+
+
+.ourSwap{
+    color: var(--text-white);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+
+
+.ag-theme-quartz-dark .ag-paging-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--green-effect2); /* Match your theme color */
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .ag-theme-quartz-dark .ag-paging-panel .ag-paging-page-summary {
+    font-size: 1rem;
+    color: var(--text-white); /* Adjust text color for visibility */
+  }
+  
+  .ag-theme-quartz-dark .ag-paging-panel select,
+  .ag-theme-quartz-dark .ag-paging-panel button {
+    background-color: #333; /* Darker background for buttons */
+    color: #fff; /* Text color for buttons */
+    border: 1px solid #555; /* Add subtle border */
+    border-radius: 4px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+  }
+  
+  .ag-theme-quartz-dark .ag-paging-panel select:hover,
+  .ag-theme-quartz-dark .ag-paging-panel button:hover {
+    background-color: #555; /* Lighter hover effect */
+  }
+  
+  @media screen and (max-width: 768px) {
+    .ag-theme-quartz-dark .ag-paging-panel {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .ag-theme-quartz-dark .ag-paging-panel .ag-paging-page-summary {
+      font-size: 0.9rem;
+    }
+  
+    .ag-theme-quartz-dark .ag-paging-panel select,
+    .ag-theme-quartz-dark .ag-paging-panel button {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.6rem;
+    }
+  }
+  
+
+
+@media screen and (max-width:972px) {
+    
+
+    .Landing2Cont{
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      background-color: var(--green-effect2);
+      background-blend-mode: overlay;
+        
+    
+    }
+    
+    .tablecont{
+        width: 96%;
+        height: 90vh;
+        
+    }
+    
+    .tableImg{
+        width: 1.2rem;
+        height: 1.2rem;
+        margin-right: .4rem;
+    }
+
+
+
+}

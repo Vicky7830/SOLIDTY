@@ -1,0 +1,117 @@
+.TokenListCont {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-dark);
+    position: absolute;
+    top: 0;
+    z-index: 30;
+    bottom: 0;
+    left: 0;
+}
+
+
+
+
+.darkBackground {
+    background: rgba(255, 62, 62, 0.54);
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    top: 0rem;
+    left: 0;
+    z-index: 8;
+}
+
+.TokenListBox {
+    width: 26rem;
+    min-height: 18rem;
+    border-radius: 1.2rem;
+    margin: 4rem 0;
+    padding: 1.3rem 1.6rem 3rem 1.6rem;
+    background-color: var(--white);
+    position: fixed;
+    top: 10%;
+
+}
+
+.popupHeader {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 1rem; */
+    padding-top: 2rem;
+
+}
+
+.popupHeader h4 {
+    min-width: 85%;
+
+    color: var(--black);
+    font-weight: 600;
+}
+
+.popupHeader h1 {
+    height: 100%;
+    min-width: 22%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: end;
+    position: relative;
+    /* transform: translateX(1rem);  */
+    color: var(--black);
+    font-size: 1.6rem;
+    font-weight: 600;
+
+    /* background-color: red; */
+}
+
+.popupHeader h1 svg {
+    /* background: red !important;
+         */
+    margin-top: .1rem;
+}
+
+
+.ApyTable {
+    width: 100%;
+    min-height: 6rem;
+    
+}
+
+.ApyTable tr th{
+background: var(--wallet-btn);
+font-weight: 500;
+width: 50%;
+height: 100%;
+padding: .5rem;
+text-align: center;
+color: var(--white);
+pointer-events: none;
+
+}
+
+
+.ApyTable tr{
+    width: 100%;
+    height: 2.8rem;
+}
+
+.ApyTable tr td{
+width: 50%;
+height: 100%;
+padding: .5rem;
+text-align: center;
+font-weight: 500;
+border-bottom: .1rem solid var(--gray);
+
+}
+
+
+.ApyTable tr:hover{
+    background: var(--white-fray);
+    color: var(--wallet-btn);
+    cursor: pointer;
+}

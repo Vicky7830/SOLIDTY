@@ -1,0 +1,281 @@
+.settingCont svg {
+    /* width:3rem; */
+    font-size: 2rem;
+    color: var(--yellow-light);
+
+    transition: all 200ms ease;
+    margin-right: .6rem;
+}
+
+
+.swapHistory{
+    width: 30%;
+    height: 2.9rem;
+}
+
+.swapHistory a svg{
+    font-size: 1.6rem;
+    /* height: 2rem; */
+    color: var(--gray-text);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+
+.settingCont svg:hover {
+    transform: rotate(70deg);
+    /* color: red; */
+}
+
+.settingCont h3 {
+    min-height: 70%;
+    padding: 0;
+    margin: 0;
+    color: var(--text-white);
+    font-weight: 800;
+    font-size: 1.4rem;
+}
+
+
+.LiquidityContainer p {
+    width: 100%;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--gray-text);
+    letter-spacing: .2px;
+}
+
+.LiquidityContainer p a {
+    font-weight: 600;
+    letter-spacing: .4px;
+    font-size: .8rem;
+}
+
+.Liquiditybtn {
+    width: 100%;
+    height: 2.7rem;
+    border-radius: .6rem;
+    background: var(--yellow-light);
+    border: none;
+    font-size: 1rem;
+    letter-spacing: .5px;
+    font-weight: 700;
+}
+
+.Liquiditybtn svg {
+    font-size: 1.22rem;
+    color: var(--white-fray);
+}
+
+.UrLiquidityCont {
+    width: 100%;
+    min-height: 8rem;
+    /* background: saddlebrown; */
+    margin-top: 1rem;
+}
+
+/* .headCont {
+} */
+
+.headCont span {
+    height: 100%;
+    font-size: 1rem;
+    /* font-weight: 00; */
+
+
+}
+
+.headCont svg {
+    height: 1.6rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--gray-text);
+
+}
+
+#connectWalletp {
+    font-size: .92rem;
+    font-weight: 500 !important;
+}
+
+
+.topPoolsContainer {
+    width: 100%;
+    min-height: 6rem;
+}
+
+
+.topPoolsContainer ul {
+    min-height: 2.6rem;
+    display: flex;
+    gap: .6rem;
+    padding: 0;
+
+}
+
+.topPoolsContainer ul li {
+
+    width: 100%;
+    height: 3.2rem;
+    /* background: seagreen; */
+    border: none;
+    border-radius: .3rem;
+    padding: .4rem;
+
+}
+
+.topPoolsContainer ul li:hover {
+background: var(--white-fray);
+}
+
+
+.topPoolsContainer ul li .li1 {
+    width: 72%;
+    height: 100%;
+    font-size: .9rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.pairContentCont span{
+    font-size: .8rem;
+    margin-left: .3rem;
+
+} 
+
+.pairContentCont span:nth-child(3)
+{
+    padding: .4rem;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius:3rem ;
+    font-weight: 600;
+    background: var(--bluish-bg);
+    color: var(--bluish);
+
+}
+
+.pairContentCont span:nth-child(4)
+{
+    padding: .6rem;
+    min-height: 50%;
+    max-height: 120%;
+    height: 62%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius:3rem ;
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.coinpirsCont {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coinpirsCont img {
+    width: 2rem;
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center center;
+}
+
+.img1 {
+    filter: drop-shadow(1px 1px var(--text-white));
+}
+
+.img2 {
+    margin-left: -1.3rem;
+}
+
+.pairContentCont {
+    width: 78%;
+    height: 100%;
+}
+
+
+.topPoolsContainer ul li .li2 {
+    width: 28%;
+    height: 100%
+}
+
+.li2 p {
+    font-size: .8rem;
+}
+
+.li2 p span{
+    font-size: .8rem;
+}
+
+
+
+
+
+
+
+.allPoolsBtn {
+    width: 100%;
+    height: 2.8rem;
+    margin-top: .6rem;
+
+    background: transparent;
+    border: .1rem solid var(--green-effect1);
+    border-radius: .6rem;
+    inset: none;
+    color: var(--green-effect1);
+    font-weight: 700;
+}
+
+.allPoolsBtn:hover {
+    border: none;
+    background: var(--yellow-light);
+        color: var(--text-white);
+}
+
+
+
+@media screen and (max-width:672px) {
+
+    .LiquidityContainer p:nth-child(2) {
+        margin: 1.2rem 0 !important;
+        width: 100%;
+        max-height: unset;
+        min-height: 2.3rem;
+        font-size: .9rem;
+        font-weight: 500;
+        flex-wrap: wrap;
+    }
+    
+    .LiquidityContainer p a {
+        font-weight: 500;
+        font-size: .8rem;
+    }
+
+    .headCont:nth-child(1){
+        margin-top: 1.6rem;
+
+    }
+
+    .headCont:nth-child(1) span{
+        font-weight: 600 !important;
+    
+    }
+
+    .allPoolsBtn{
+        margin-top: .6rem;
+    }
+
+
+
+
+}

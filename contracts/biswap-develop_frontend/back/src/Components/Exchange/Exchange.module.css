@@ -1,0 +1,101 @@
+.ExchangeCont {
+    min-height: 100vh;
+    padding: 5rem 0;
+
+    background: url("../../assets/bnr1.jpg") fixed no-repeat;
+    background-color: var(--yellowl);
+
+    background-blend-mode: overlay;
+    overflow: hidden;
+    position: relative;
+}
+
+.SwapCont {
+    width: 31rem;
+    min-height: 10rem;
+    border-radius: 1.2rem;
+    margin: 4rem 0;
+    padding: 1.3rem 1.6rem 3rem 1.6rem;
+    background-color: var(--text-white);
+}
+
+.hr {
+    padding: 0;
+    margin-top: -1rem;
+}
+
+
+.navlinkCont {
+    width: 100%;
+    height: 3rem;
+    /* background: saddlebrown; */
+}
+
+.navlinkCont li {
+    /* width: 25%; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+
+}
+
+.navlinkCont li a {
+    width: 100%;
+    height: 100%;
+    word-break: keep-all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-text);
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.active_it {
+
+    border-bottom: .28rem solid var(--wallet-btn);
+    /* border-radius: .4rem; */
+    color: var(--black-text);
+
+}
+
+@media screen and (max-width:972px) {
+    .ExchangeCont {
+        min-height: 40vh;
+        padding: 1rem 0 6rem 0;
+
+    }
+
+    .SwapCont {
+        width: 95%;
+        margin: 2rem 0;
+        padding: 1rem 1rem 3rem 1rem;
+    }
+
+
+    .navlinkCont {
+        width: 100%;
+        height: 3rem;
+        justify-content: space-between !important;
+        padding: 0;
+    }
+
+
+    .navlinkCont li a {
+        font-weight: 600;
+        font-size: .9rem;
+    }
+
+    .active_it {
+
+        border-bottom: .28rem solid var(--wallet-btn);
+        /* border-radius: .4rem; */
+        color: var(--black-text);
+
+    }
+
+
+}

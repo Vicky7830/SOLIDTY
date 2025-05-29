@@ -1,0 +1,256 @@
+.ainerr {
+	max-width: 400px;
+	/* margin: auto; */
+	/* padding: 20px; */
+	border-radius: 15px;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+.iframee-container {
+
+	background: linear-gradient(45deg, rgb(7, 10, 94), rgba(82,73,56,255));
+
+
+
+	width: 100%;
+	height: 600px; /* Adjust height based on your design */
+	border: none;
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.iframee {
+	width: 100%;
+	height: 50%;
+	border: none;
+	border-radius: 15px;
+}
+
+
+
+
+.containerR {
+	width: 60%;
+	max-width: 2200px;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	height: 80vh;
+	overflow: hidden;
+	margin: 0 auto; /* Center the container */
+  }
+
+  .headerR {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+    background: linear-gradient(45deg, rgba(1, 11, 72, 255), #3f065b);
+		color: white;
+	font-size: 1.5em;
+	font-weight: bold;
+	text-align: center;
+	flex-shrink: 0;
+  }
+
+  .logo1 {
+	width: 40px; /* Set logo size */
+	margin-right: 10px; /* Space between logo and text */
+	animation: rotateLogo 3s ease-in-out infinite;
+  }
+
+  /* 3D rotation animation */
+  @keyframes rotateLogo {
+	0% {
+	  transform: rotateY(0deg);
+	}
+	50% {
+	  transform: rotateY(180deg);
+	}
+	100% {
+	  transform: rotateY(360deg);
+	}
+  }
+
+  iframe {
+	width: 100%; /* Ensures iframe takes full width of container */
+	height: calc(100% - 50px); /* Adjusts height to fill remaining space after the header */
+	border: none;
+	flex-grow: 1;
+  }
+
+  /* Ensure proper responsiveness on smaller screens */
+  @media (max-width: 768px) {
+
+
+    .containerR {
+	width: 100%;
+	max-width: 2200px;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	height: 80vh;
+	overflow: hidden;
+	margin: 0 auto; /* Center the container */
+  }
+	.headerR {
+	  font-size: 1.2em; /* Smaller header font size on smaller screens */
+	}
+
+	iframe {
+	  height: 100%; /* Make iframe take full height */
+	}
+  }
+a {
+	color: white;
+	-webkit-transition: all 500ms;
+	transition: all 500ms
+}
+a:hover, a:focus {
+	color: #f6aa35;
+	text-decoration: none;
+	outline:0; 
+}
+h1,
+h2,
+h3,
+h4 {
+	font-family: 'Poppins', sans-serif;
+}
+h1 {
+	font-weight: 700;
+	font-size: 52px;
+}
+h3 {
+	font-weight: 700;
+	font-size: 36px;
+}
+img {
+	max-width: 40%;
+}
+
+.light {
+	max-width: 30%;
+}
+.dark {
+	max-width: 20%
+}
+.about us {
+	max-width: 100%;
+}
+.wrapper {
+	overflow: hidden;
+	background-image:url(images/bg-0.jfif);
+	/* background-size: cover; 
+    background-position: center;  */
+    background-repeat: no-repeat; 
+	height: auto;
+}
+
+
+
+
+
+
+    /* POPUP STYLES */
+    .popup {
+        position: fixed;
+        top: -200px; /* Initially hidden above */
+        left: 50%;
+        height: 50%;
+        transform: translateX(-50%);
+        width: 520px;
+        background: linear-gradient(45deg, rgba(1, 11, 72, 255), hsl(59, 77%, 48%));
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .popup.show {
+        top: 120px; /* Slides down */
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .banner {
+        background: linear-gradient(45deg, #ff6600, #ff3300);
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .logo {
+        width: 80px;
+        height: 80px;
+        margin-top: 10px;
+    }
+
+    .popup-content {
+        padding: 15px;
+    }
+
+    .close {
+        margin-top: 10px;
+        padding: 8px 16px;
+        border: none;
+        background: #ff3300;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .close:hover {
+        background: #cc2900;
+    }
+
+    /* MEDIA QUERIES FOR RESPONSIVENESS */
+    @media (max-width: 768px) {
+        .popup {
+            width: 90%; /* 90% width on small screens */
+            height: auto;
+            padding: 15px;
+        }
+
+        .logo {
+            width: 60px; /* Adjust logo size */
+            height: 60px;
+        }
+
+        .banner {
+            font-size: 18px; /* Smaller font size on small screens */
+        }
+
+        .close {
+            padding: 6px 12px; /* Smaller button on small screens */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .popup {
+            width: 95%; /* 95% width on very small screens */
+        }
+
+        .logo {
+            width: 50px; /* Smaller logo on very small screens */
+            height: 50px;
+        }
+
+        .banner {
+            font-size: 16px; /* Even smaller font size */
+        }
+
+        .close {
+            padding: 5px 10px; /* Adjust close button */
+        }
+    }

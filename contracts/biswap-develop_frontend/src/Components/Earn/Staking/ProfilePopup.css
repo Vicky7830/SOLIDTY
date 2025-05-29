@@ -1,0 +1,158 @@
+/* Button to open profile */
+.profiles {
+     position: absolute;
+    right: 1%;
+    top: 1%;
+  padding: 10px 25px;
+  background: #4bcffa;
+  border: none;
+  border-radius: 8px;
+  /* color: white; */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.profiles:hover {
+  background: #39b7e3;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  right: 1%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Profile card popup */
+.profiles-card {
+  background: linear-gradient(135deg, #202020, #2c2c54);
+  border-radius: 20px;
+  padding: 25px 30px;
+  width: 320px;
+  color: white;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+  text-align: center;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid #4bcffa;
+  margin-bottom: 20px;
+  animation: pulse 2.5s infinite;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.icon {
+  color: #4bcffa;
+  font-size: 22px;
+}
+
+/* Close button */
+.close-btns {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #ff4b4b;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(75, 207, 250, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(75, 207, 250, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(75, 207, 250, 0);
+  }
+}
+
+/* Animate popup - you can add this class to profile-card */
+.animate-popup {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* ✅ Mobile View */
+@media (max-width: 768px) {
+  .profiles-card {
+    width: 90vw; /* nearly full width on mobile */
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-width: 2px;
+    margin-bottom: 15px;
+  }
+
+  .info {
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .icon {
+    font-size: 18px;
+  }
+
+  .close-btns {
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+  }
+
+  .profiles {
+    padding: 8px 20px;
+    font-size: 16px;
+  border-radius: 0px;
+  }
+}

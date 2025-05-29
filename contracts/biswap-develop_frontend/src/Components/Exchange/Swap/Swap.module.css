@@ -1,0 +1,421 @@
+.SwapCont {
+    width: 34rem;
+    min-height: 18rem;
+    border-radius: 1.2rem;
+    margin: 4rem 0;
+    padding: 1.3rem 1.6rem 3rem 1.6rem;
+    background-color: var(--text-white);
+}
+
+.hr {
+    padding: 0;
+    margin-top: -1rem;
+}
+
+
+.navlinkCont {
+    width: 100%;
+    height: 3rem;
+}
+
+.navlinkCont li {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+
+}
+
+.navlinkCont li a {
+    width: 85%;
+    height: 100%;
+    word-break: keep-all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-text);
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.topCont{
+    width: 100%;
+}
+
+.swapHistory{
+    width: 30%;
+    height: 2.9rem;
+}
+
+.swapHistory a svg{
+    font-size: 1.6rem;
+    /* height: 2rem; */
+    color: var(--gray-text);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.settingCont {
+    width: 70%;
+    height: 2.9rem;
+}
+
+.settingCont svg {
+    width: 3rem;
+    font-size: 2rem;
+    color: var(--yellow-light);
+
+    transition: all 200ms ease;
+}
+
+.settingCont svg:hover {
+    transform: rotate(70deg);
+    /* color: red; */
+}
+
+.settingCont h3 {
+    min-height: 70%;
+    padding: 0;
+    margin: 0;
+    color: var(--text-white);
+    font-weight: 800;
+}
+
+.swapFromhead {
+    width: 100%;
+    height: 2.2rem;
+    margin-top: 1.6rem;
+}
+
+.swapImgFromCont {
+    width: 1.6rem;
+}
+
+.swapImgFromCont img {
+    width: 100%;
+    object-fit: contain;
+    object-position: center center;
+}
+
+.swapFromhea span:nth-child(1) {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.swapFromhead span:nth-child(2) {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.swapFromhead svg {
+    width: 2.2rem;
+    /* min-height: 100%; */
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+    align-items: flex-end;
+    
+}
+
+.fromInputCont {
+    margin-top: .4rem;
+    width: 100%;
+    height: 3rem;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2;
+    color: var(--gray-text);
+}
+
+
+
+.fromInputCont input {
+    width: 75%;
+    height: 100%;
+    padding: .8rem;
+    border-radius: .6rem;
+    background: var(--input-strip);
+    border: none;
+    color: var(--gray-text);
+
+}
+
+.fromInputCont input:focus {
+    border: .14rem solid var(--wallet-btn);
+
+}
+
+
+
+/* exchange cont  */
+
+.exchangeSymboldCont {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.exchangeSymboldCont svg {
+    font-size: 1.4rem;
+    color: var(--gray-text);
+}
+
+
+.fromInputCont2 {
+    width: 100%;
+    height: 3rem;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--gray-text);
+
+}
+
+.fromInputCont2 input {
+    width: 100%;
+    height: 100%;
+    margin-top: .6rem;
+    padding: .8rem;
+    border-radius: .6rem;
+    background: var(--input-strip);
+    color: var(--gray-text);
+
+    border: none;
+}
+
+.fromInputCont2 input:focus {
+    border: .14rem solid var(--wallet-btn);
+    box-shadow: none;
+
+}
+
+
+
+.fromInputCont span {
+    width: 20%;
+    height: 100%;
+    background: var(--input-strip);
+    border-radius: .6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--gray-text);
+
+}
+
+.fromInputCont span:hover {
+    border: .14rem solid var(--wallet-btn);
+
+}
+
+.swapSubmitBtn {
+    width: 100%;
+    height: 2.8rem;
+    margin-top: 1.6rem;
+    border-radius: .6rem;
+    border: none;
+    /* border: 0.12rem solid var(--text-white); */
+    background: var(--yellow-light);
+}
+
+
+.swapHistoryp {
+    width: 100%;
+    height: 1.6rem;
+    font-size: .8rem;
+    font-weight: 500;
+    margin-top: .4rem;
+}
+
+
+.swapHistoryp a{
+    color: var(--green-effect2);
+
+}
+
+
+
+@media screen and (max-width:972px) {
+
+    
+.settingCont {
+    height: 2.4rem;
+}
+
+.settingCont svg {
+    font-size: 1.8rem;
+  
+}
+
+.settingCont h3 {
+    font-weight: 800;
+}
+
+
+
+.swapFromhead {
+    width: 100%;
+    height: 2.2rem;
+    margin-top: .5rem;
+}
+
+.swapFromhead:nth-child(1){
+    margin-top: 0rem !important;
+}
+
+
+
+.swapImgFromCont {
+    width: 1.6rem;
+}
+
+.swapImgFromCont img {
+    width: 100%;
+    object-fit: contain;
+    object-position: center center;
+}
+
+.swapFromhea span:nth-child(1) {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.swapFromhead span:nth-child(2) {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.swapFromhead svg {
+    width: 2.2rem;
+    /* min-height: 100%; */
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+    align-items: flex-end;
+    
+}
+
+.fromInputCont {
+    margin-top: .4rem;
+    width: 100%;
+    height: 3rem;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2;
+    color: var(--gray-text);
+}
+
+
+
+.fromInputCont input {
+    width: 75%;
+    height: 100%;
+    padding: .8rem;
+    border-radius: .6rem;
+    background: var(--input-strip);
+    border: none;
+    color: var(--gray-text);
+
+}
+
+.fromInputCont input:focus {
+    border: .14rem solid var(--wallet-btn);
+
+}
+
+
+
+/* exchange cont  */
+
+.exchangeSymboldCont {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.exchangeSymboldCont svg {
+    font-size: 1.4rem;
+    color: var(--gray-text);
+}
+
+
+.fromInputCont2 {
+    width: 100%;
+    height: 3rem;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--gray-text);
+
+}
+
+.fromInputCont2 input {
+    width: 100%;
+    height: 100%;
+    margin-top: .6rem;
+    padding: .8rem;
+    border-radius: .6rem;
+    background: var(--input-strip);
+    color: var(--gray-text);
+
+    border: none;
+}
+
+.fromInputCont2 input:focus {
+    border: .14rem solid var(--wallet-btn);
+    box-shadow: none;
+
+}
+
+
+
+.fromInputCont span {
+    width: 20%;
+    height: 100%;
+    background: var(--input-strip);
+    border-radius: .6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--gray-text);
+
+}
+
+.fromInputCont span:hover {
+    border: .14rem solid var(--wallet-btn);
+
+}
+
+.swapSubmitBtn {
+    width: 100%;
+    height: 2.8rem;
+    margin-top: 1.6rem;
+    border-radius: .6rem;
+    border: none;
+    /* border: 0.12rem solid var(--text-white); */
+    background: var(--yellow-light);
+}
+
+
+
+
+}

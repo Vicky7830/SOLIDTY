@@ -1,0 +1,217 @@
+.token-info {
+  margin-top: 30px;
+  padding: 20px;
+  /* background-color: #0a0a3b; */
+  border: 1px solid gold;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+}
+
+.token-info h3 {
+  color: gold;
+  margin-bottom: 10px;
+}
+
+.token-info p {
+  color: #ccc;
+  margin: 5px 0;
+}
+
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.token-item {
+  padding: 15px;
+  /* background: #10104f; */
+  border: 1px solid gold;
+  border-radius: 10px;
+  position: relative;
+}
+
+.label {
+  font-weight: 600;
+  color: #ffd700;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.value {
+  word-break: break-all;
+  font-size: 14px;
+  color: #fff;
+}
+
+.address-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.copy-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: gold;
+  transition: transform 0.2s ease;
+}
+
+.copy-btn:hover {
+  transform: scale(1.2);
+}
+
+.copy-msg {
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  font-size: 12px;
+  color: #0f0;
+}
+
+.token-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+
+
+
+
+
+
+.conternt {
+    width: 100%;
+    min-height: 100vh;
+    /* background: url(/src/assets/bnr1.jpg) fixed no-repeat center center / cover; */
+    background-color: var(--yellowl);
+    background-blend-mode: overlay;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+
+/* Layout Wrapper */
+.buycrypto-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+/* Card Styling */
+/* .cardd {
+    background: linear-gradient(#1D54C3, #1a3879, #9F527C, #3073D6);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+    color: aliceblue;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+} */
+
+.cardd:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Heading */
+.section-heading {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+/* Subtitle */
+.sub-txt {
+    text-align: center;
+    font-size: 1rem;
+    color: #eee;
+    margin-bottom: 1.5rem;
+}
+
+  .background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: -1;
+  object-fit: cover;
+}
+
+/* Responsive Iframe Container */
+.iframe-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ✅ Mobile View */
+@media (max-width: 768px) {
+    .buycrypto-wrapper {
+        padding: 1rem;
+    }
+
+    /* .cardd {
+       height: 40rem;
+        border-radius: 16px;
+    } */
+
+    .section-heading {
+        font-size: 1.6rem;
+    }
+
+    .sub-txt {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .iframe-container {
+        padding-bottom: 150%; /* taller aspect ratio for better usability on mobile */
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-heading {
+        font-size: 1.4rem;
+    }
+
+    .sub-txt {
+        font-size: 0.85rem;
+    }
+
+    /* .cardd {
+        height: 40rem;
+        padding: 0.8rem;
+    } */
+
+    .iframe-container {
+        padding-bottom: 150%;
+    }
+}
